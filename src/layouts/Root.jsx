@@ -1,0 +1,23 @@
+import { Outlet } from "react-router-dom";
+import Navbar from "../pages/shared/Navbar";
+import Footer from "../pages/shared/Footer";
+
+const Root = () => {
+  return (
+    <div>
+      <div className="max-w-full  mx-auto sticky top-0 z-10 backdrop-blur-xl bg-gray-100   dark:bg-gray-900   shadow-2xl">
+        <Navbar></Navbar>
+      
+      </div>
+      <div className="min-h-[calc(100vh-350px)]  ">
+        <Outlet />
+      </div>
+      <div className="max-w-full bg-gray-100   top-0 z-10 backdrop-blur-xl  mx-auto  shadow-5xl">
+      <Footer></Footer>
+      </div>
+      
+    </div>
+  );
+};
+
+export default Root;
