@@ -7,12 +7,13 @@ import Register from "../pages/Register";
 import Login from "../pages/Login";
  import AddFood from "../pages/Food/AddFood";
 import PrivateRoute from "./PrivateRoute";
-import AllAvailableFood from "../pages/AllAvailableFood";
+import AllAvailableFood from "../pages/AllProperty";
 import FoodDetails from "../pages/Food/FoodDetails";
 import MyLists from "../pages/MyList/MyLists";
 import UpdateFood from "../pages/UpdateFood";
 //  import NotFoundPage from "../pages/NotFoundPage";
 import Request from "../pages/MyList/Request";
+import AllProperty from "../pages/AllProperty";
 
 
 const router = createBrowserRouter([
@@ -34,8 +35,9 @@ const router = createBrowserRouter([
             },
             
             {
-                path: '/add-food',
-                element:<PrivateRoute> <AddFood></AddFood></PrivateRoute>
+                path: '/all-property',
+               // element:<PrivateRoute> <AddFood></AddFood></PrivateRoute>
+                element: <AllProperty></AllProperty>
             },
             {
                 path: '/food-details/:id',
@@ -46,7 +48,7 @@ const router = createBrowserRouter([
             {
                 path: '/my-list/',
                 element:<PrivateRoute> <MyLists></MyLists></PrivateRoute>,
-                loader:()=>fetch('https://b9a11-food-server.vercel.app/food')
+                //loader:()=>fetch('https://b9a11-food-server.vercel.app/food')
 
             },
             

@@ -66,7 +66,7 @@ const Navbar = () => {
 
       <li>
         <NavLink
-          to=""
+          to="all-property"
           className={({ isActive }) =>
             isActive
               ? "font-bold text-lg text-[#65bc7b]"
@@ -192,7 +192,7 @@ const Navbar = () => {
           {!user ? (
             <Link to="/login" className="">
               {" "}
-              <button className="btn btn-outline btn-wide btn-md text-[#65bc7b] ">
+              <button className="btn btn-outline w-24 btn-md text-[#65bc7b] ">
                 Login
               </button>
             </Link>
