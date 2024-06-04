@@ -14,7 +14,7 @@ const Faq = () => {
         <div className="container px-6 py-10 mx-auto">
           <div className="text-center">
             <h1 className="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white">
-              Frequently Ask <span className="text-lime-600">Question</span>
+              Frequently Ask <span className="text-[#65bc7b]">Question</span>
             </h1>
             <p className="max-w-lg mx-auto mt-4 text-gray-500 ">
               A blog dedicated to fostering community-driven efforts to share surplus food resources and minimize food waste through innovative solutions and collaborative initiatives.
