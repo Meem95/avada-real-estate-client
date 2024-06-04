@@ -5,6 +5,7 @@ import Pricing from "./Home/Pricing";
 import { Fade } from "react-awesome-reveal";
 import FeaturedProperty from "./Home/FeaturedProperty";
 import Review from "./Home/Review";
+import Gallery from "./Home/Gallery";
 
 const Home = () => {
   return (
@@ -23,10 +24,13 @@ const Home = () => {
       </div>
       <Fade direction="left" duration="2000">
   
-          <Review />
+          <Gallery />
        
       </Fade>
       
+      <div>
+        <Review />
+      </div>
       <div>
         <Faq />
       </div>

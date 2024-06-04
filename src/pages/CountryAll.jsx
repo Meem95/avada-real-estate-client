@@ -6,8 +6,6 @@ const CountryAll = () => {
     const countries = useLoaderData();
     console.log("countries", countries);
 
-
-
     return (
         <div className="min-h-screen max-w-7xl mx-auto">
         <div>
