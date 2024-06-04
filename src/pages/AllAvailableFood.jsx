@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import FeatureFood from "./Home/FeatureFood";
+import FeaturedProperty from "./Home/FeaturedProperty";
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 
@@ -68,10 +68,10 @@ const AllAvailableFood = () => {
             </div>
             <div className={`grid ${isThreeColumnLayout ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1 md:grid-cols-1 lg:grid-cols-2 lg:gap-20 lg:w-full lg:max-w-5xl mx-auto'} gap-x-10 gap-y-10`}>
               {filteredFoods.map((touristSpot) => (
-                <FeatureFood
+                <FeaturedProperty
                   key={touristSpot.id}
                   cards={touristSpot}
-                ></FeatureFood>
+                ></FeaturedProperty>
               ))}
             </div>
           </div>

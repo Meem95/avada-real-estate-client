@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import TouristSpot from "./Home/FeatureFood";
+//import TouristSpot from "./Home/FeatureFood";
 
 
 const CountryAll = () => {

@@ -2,8 +2,9 @@ import { Helmet } from "react-helmet";
 import Slider from "./Home/Slider";
 import Faq from "./Home/Faq";
 import Pricing from "./Home/Pricing";
-import Countries from "./Home/Countries";
-import FeatureFood from "./Home/FeatureProperty";
+import { Fade } from "react-awesome-reveal";
+import FeaturedProperty from "./Home/FeaturedProperty";
+import Review from "./Home/Review";
 
 const Home = () => {
   return (
@@ -18,8 +19,14 @@ const Home = () => {
         <Pricing />
       </div>
       <div className="">
-        <FeatureFood />
+        <FeaturedProperty />
       </div>
+      <Fade direction="left" duration="2000">
+  
+          <Review />
+       
+      </Fade>
+      
       <div>
         <Faq />
       </div>

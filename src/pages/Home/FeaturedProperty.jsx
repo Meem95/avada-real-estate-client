@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { PropTypes } from "prop-types";
 import { motion } from "framer-motion";
 
-const FeatureProperty = () => {
+const FeaturedProperty = () => {
  
   const truncateString = (str, numWords) => {
     const words = str.split(" ");
@@ -133,7 +133,7 @@ const FeatureProperty = () => {
    
   );
 };
-FeatureProperty.propTypes = {
+FeaturedProperty.propTypes = {
   cards: PropTypes.shape({
     tourists_spot_name: PropTypes.string,
     country_Name: PropTypes.string,
@@ -146,4 +146,4 @@ FeatureProperty.propTypes = {
     _id: PropTypes.string,
   }),
 };
-export default FeatureFood;
+export default FeaturedProperty;
