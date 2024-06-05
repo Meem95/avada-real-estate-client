@@ -5,15 +5,16 @@ import Root from "../layouts/Root";
 // import ErrorPage from "../pages/ErrorPage";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
- import AddFood from "../pages/Food/AddFood";
+ import AddFood from "../pages/Property/AddFood";
 import PrivateRoute from "./PrivateRoute";
 import AllAvailableFood from "../pages/AllProperty";
-import FoodDetails from "../pages/Food/FoodDetails";
+import FoodDetails from "../pages/Property/PropertyDetails";
 import MyLists from "../pages/MyList/MyLists";
 import UpdateFood from "../pages/UpdateFood";
 //  import NotFoundPage from "../pages/NotFoundPage";
 import Request from "../pages/MyList/Request";
 import AllProperty from "../pages/AllProperty";
+import PropertyDetails from "../pages/Property/PropertyDetails";
 
 
 const router = createBrowserRouter([
@@ -40,9 +41,10 @@ const router = createBrowserRouter([
                 element: <AllProperty></AllProperty>
             },
             {
-                path: '/food-details/:id',
-                element:<PrivateRoute> <FoodDetails></FoodDetails></PrivateRoute>,
-                loader:({params})=>fetch(`https://b9a11-food-server.vercel.app/food/${params.id}`)
+                path: '/property-details',
+                // element:<PrivateRoute> <PropertyDetails></PropertyDetails></PrivateRoute>,
+                element:<PropertyDetails></PropertyDetails>,
+              //  loader:({params})=>fetch(`https://b9a11-food-server.vercel.app/food/${params.id}`)
             },
             
             {
