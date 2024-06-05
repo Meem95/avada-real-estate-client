@@ -36,7 +36,7 @@ const Navbar = () => {
 
   const handleSignOut = () => {
     axios
-      .post("http://localhost:5000", {}, { withCredentials: true })
+      .post("http://localhost:5000/logout", {}, { withCredentials: true })
       .then(() => {
         logOut().then();
         Swal.fire({
