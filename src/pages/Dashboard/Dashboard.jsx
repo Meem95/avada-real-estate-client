@@ -45,15 +45,16 @@ const Dashboard = () => {
             </div>
           </div>
           <div
-            className="drawer-side w-36 lg:space-y-2"
-            style={{
+            className="drawer-side w-32 "
+          
+          >
+            <label htmlFor="" aria-label="close sidebar" className="drawer-overlay"></label>
+            <div className="max-w-6xl flex flex-col lg:mt-2 mt-12 justify-between min-h-screen  bg-opacity-50 font-popins text-white"   style={{
               backgroundImage: `url(${sidebarImage})`,
               backgroundSize: 'cover',
               backgroundRepeat: 'no-repeat',
-            }}
-          >
-            <label htmlFor="" aria-label="close sidebar" className="drawer-overlay"></label>
-            <div className="max-w-6xl flex flex-col mt-14 justify-between min-h-screen  bg-opacity-50 font-popins text-white">
+
+            }}>
               {/* {isAdmin ? ( */}
                 <ul className="md:p-4 p-1 md:flex md:flex-col md:justify-start md:items-start">
                   <li className="mb-3 border-b-3">
@@ -73,7 +74,7 @@ const Dashboard = () => {
                   </li>
                   <li className="mb-3 border-b-3">
                     <NavLink
-                      to={"/dashboard/manageusers"}
+                      to={"/dashboard/manage-user"}
                       className={({ isActive }) =>
                         isActive
                           ? "text-special-button-hover border-special-button-hover"
@@ -87,7 +88,7 @@ const Dashboard = () => {
                   </li>
                   <li className="mb-3 border-b-3">
                     <NavLink
-                      to={"/dashboard/managecategory"}
+                      to={"/dashboard/manage-property"}
                       className={({ isActive }) =>
                         isActive
                           ? "text-special-button-hover border-special-button-hover"

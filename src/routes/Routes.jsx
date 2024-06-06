@@ -17,6 +17,8 @@ import AllProperty from "../pages/AllProperty";
 import PropertyDetails from "../pages/Property/PropertyDetails";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Profile from "../pages/Dashboard/Profile";
+import ManageUser from "../pages/Dashboard/ManageUser";
+import ManageProperty from "../pages/Dashboard/ManageProperty";
 
 
 const router = createBrowserRouter([
@@ -97,6 +99,18 @@ const router = createBrowserRouter([
           {
             path: 'profile',
             element: <Profile></Profile>
+          },
+          {
+            path: 'manage-user',
+            element: <ManageUser></ManageUser>
+          },
+          {
+            path: 'manage-property',
+            element: <ManageProperty></ManageProperty>
+          },
+          {
+            path: 'manage-review',
+            element: <ManageProperty></ManageProperty>
           },
          
         ]
