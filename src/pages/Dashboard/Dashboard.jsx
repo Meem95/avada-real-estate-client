@@ -215,7 +215,7 @@ const Dashboard = () => {
                     </li>
                     <li className="mb-3 border-b-3">
                       <NavLink
-                        to={"/dashboard"}
+                        to={"/dashboard/user-wishlist"}
                         end
                         className={({ isActive }) =>
                           isActive

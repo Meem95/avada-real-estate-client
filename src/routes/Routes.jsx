@@ -25,6 +25,7 @@ import PropertyAddedByAgent from "../pages/Dashboard/PropertyAddedByAgent";
 import UpdateProperty from "../pages/Dashboard/UpdateProperty";
 import SoldProperty from "../pages/Dashboard/SoldProperty";
 import RequestedProperty from "../pages/Dashboard/RequestedProperty";
+import UserWishlist from "../pages/Dashboard/UserWishlist";
 
 
 const router = createBrowserRouter([
@@ -138,6 +139,10 @@ const router = createBrowserRouter([
           {
             path: 'requested-property',
             element: <RequestedProperty></RequestedProperty>
+          },
+          {
+            path: 'user-wishlist',
+            element: <UserWishlist></UserWishlist>
           },
          
         ]
