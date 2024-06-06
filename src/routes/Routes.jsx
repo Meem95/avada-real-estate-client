@@ -20,6 +20,7 @@ import Profile from "../pages/Dashboard/Profile";
 import ManageUser from "../pages/Dashboard/ManageUser";
 import ManageProperty from "../pages/Dashboard/ManageProperty";
 import ReviewByAdmin from "../pages/Dashboard/ReviewByAdmin";
+import AddProperty from "../pages/Dashboard/AddProperty";
 
 
 const router = createBrowserRouter([
@@ -112,6 +113,10 @@ const router = createBrowserRouter([
           {
             path: 'manage-review-by-admin',
             element: <ReviewByAdmin></ReviewByAdmin>
+          },
+          {
+            path: 'add-property',
+            element: <AddProperty></AddProperty>
           },
          
         ]

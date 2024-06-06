@@ -121,7 +121,7 @@ const Dashboard = () => {
                   <ul className="md:p-4 p-1 md:flex md:flex-col md:justify-start md:items-start">
                     <li className="mb-3 border-b-3">
                       <NavLink
-                        to={"/dashboard"}
+                        to={"/dashboard/profile"}
                         end
                         className={({ isActive }) =>
                           isActive
@@ -136,7 +136,7 @@ const Dashboard = () => {
                     </li>
                     <li className="mb-3 border-b-3">
                       <NavLink
-                        to={"/dashboard/managemedicine"}
+                        to={"/dashboard/add-property"}
                         className={({ isActive }) =>
                           isActive
                             ? "text-special-button-hover border-special-button-hover"
@@ -198,7 +198,7 @@ const Dashboard = () => {
                   <ul className="md:p-4 p-1 md:flex md:flex-col md:justify-start md:items-start">
                     <li className="mb-3 border-b-3">
                       <NavLink
-                        to={"/profile"}
+                        to={"/dashboard/profile"}
                         end
                         className={({ isActive }) =>
                           isActive
