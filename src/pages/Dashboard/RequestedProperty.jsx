@@ -1,8 +1,10 @@
-const ManageProperty = () => {
+import React from "react";
+
+const RequestedProperty = () => {
   return (
     <div>
       <div className="text-center mt-5 text-4xl">
-        <h1>All Property</h1>
+        <h1>Requested Property</h1>
       </div>
       <div className="overflow-x-auto max-w-6xl mx-auto mt-5">
         <table className="table text-center">
@@ -10,11 +12,11 @@ const ManageProperty = () => {
             <tr>
               <th>Property Title</th>
               <th>Property Location</th>
-              <th>Agent Name</th>
-              <th>Agent Email</th>
-              <th>Price Range</th>
-              <th>Verify</th>
-              <th>Reject</th>
+              <th>Buyer Name</th>
+              <th>Buyer Email</th>
+              <th>Offered Price </th>
+              <th>Accept </th>
+              <th>Reject  </th>
             </tr>
           </thead>
           <tbody>
@@ -30,17 +32,15 @@ const ManageProperty = () => {
               <td>Meem</td>
               <td>meemfatema95@gmail.com</td>
               <td>5000 to 6000</td>
-
-             
               <th>
                 <button className="btn btn-ghost btn-sm  bg-green-500">
-                  Verify
+                  Accept
                 </button>
               </th>
              
               <th>
                 <button className="btn btn-ghost btn-sm bg-red-500">
-                  Delete
+                  Reject
                 </button>
               </th>
             </tr>
@@ -56,21 +56,18 @@ const ManageProperty = () => {
               <td>Meem</td>
               <td>meemfatema95@gmail.com</td>
               <td>5000 to 6000</td>
-
-             
               <th>
                 <button className="btn btn-ghost btn-sm  bg-green-500">
-                  Verify
+                  Accept
                 </button>
               </th>
              
               <th>
                 <button className="btn btn-ghost btn-sm bg-red-500">
-                  Delete
+                  Reject
                 </button>
               </th>
             </tr>
-           
           </tbody>
         </table>
       </div>
@@ -78,4 +75,4 @@ const ManageProperty = () => {
   );
 };
 
-export default ManageProperty;
+export default RequestedProperty;

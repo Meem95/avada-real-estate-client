@@ -165,7 +165,7 @@ const Dashboard = () => {
                     </li>
                     <li className="mb-3 border-b-3">
                       <NavLink
-                        to={"/dashboard/askadvertisement"}
+                        to={"/dashboard/sold-property"}
                         className={({ isActive }) =>
                           isActive
                             ? "text-special-button-hover border-special-button-hover"
@@ -179,7 +179,7 @@ const Dashboard = () => {
                     </li>
                         <li className="mb-3 border-b-3">
                         <NavLink
-                            to={"/dashboard/askadvertisement"}
+                            to={"/dashboard/requested-property"}
                             className={({ isActive }) =>
                             isActive
                                 ? "text-special-button-hover border-special-button-hover"
