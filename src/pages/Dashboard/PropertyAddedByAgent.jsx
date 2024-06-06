@@ -65,7 +65,7 @@ const PropertyAddedByAgent = () => {
           </div>
           <div className="flex justify-between ">
            
-            <Link to="/property-details">
+            <Link to="/dashboard/update-property">
               <button className="relative overflow-hidden  border border-[#65bc7b] text-[#65bc7b]  text-sm  py-3 px-3 font-bold uppercase tracking-wider transition-all duration-150 ease-in-out focus:outline-none group mt-4">
                 <span className="absolute inset-0 bg-[#65bc7b] transform scale-x-0 origin-left transition-transform duration-150 ease-in-out group-hover:scale-x-100"></span>
                 <span className="relative z-10 transition-colors duration-150 ease-in-out group-hover:text-white">

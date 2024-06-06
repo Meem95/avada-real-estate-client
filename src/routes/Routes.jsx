@@ -22,6 +22,7 @@ import ManageProperty from "../pages/Dashboard/ManageProperty";
 import ReviewByAdmin from "../pages/Dashboard/ReviewByAdmin";
 import AddProperty from "../pages/Dashboard/AddProperty";
 import PropertyAddedByAgent from "../pages/Dashboard/PropertyAddedByAgent";
+import UpdateProperty from "../pages/Dashboard/UpdateProperty";
 
 
 const router = createBrowserRouter([
@@ -123,6 +124,14 @@ const router = createBrowserRouter([
           {
             path: 'property-list',
             element: <PropertyAddedByAgent></PropertyAddedByAgent>
+          },
+          {
+            path: 'update-property',
+            element: <UpdateProperty></UpdateProperty>
+          },
+          {
+            path: 'sold-property',
+            element: <UpdateProperty></UpdateProperty>
           },
          
         ]
