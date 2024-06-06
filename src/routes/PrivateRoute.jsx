@@ -15,8 +15,11 @@ const PrivateRoute = ({ children }) => {
     if (user) {
         return children;
     }
+    else{
 
-    return <Navigate state={location.pathname} to="/login"></Navigate>;
+        return <Navigate state={location.pathname} ></Navigate>;
+    }
+
 };
 PrivateRoute.propTypes = {
     children:PropTypes.node,

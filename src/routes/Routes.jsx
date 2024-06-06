@@ -15,6 +15,7 @@ import UpdateFood from "../pages/UpdateFood";
 import Request from "../pages/MyList/Request";
 import AllProperty from "../pages/AllProperty";
 import PropertyDetails from "../pages/Property/PropertyDetails";
+import Dashboard from "../pages/Dashboard/Dashboard";
 
 
 const router = createBrowserRouter([
@@ -85,7 +86,20 @@ const router = createBrowserRouter([
             },
           
         ]
-    }   
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        // element: <Dashboard></Dashboard>,
+        children: [
+          // normal user routes
+          {
+            path: 'userHome',
+            //element: <UserHome></UserHome>
+          },
+         
+        ]
+      }
 
 ]) 
 export default router;

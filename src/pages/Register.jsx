@@ -8,7 +8,7 @@ import r2 from "../assets/images/reg.json";
 import Lottie from "lottie-react";
 
 const Register = () => {
-
+  // const axiosPublic = useAxiosPublic();
   const { createUser } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ const Register = () => {
             .then(result => {
               console.log(result);
               const createdAt = result.user?.metadata?.creationTime;
-              const user = { email, createdAt: createdAt };
+              const user = { email, createdAt: createdAt,photoURL };
               fetch('http://localhost:5000/user', {
                   method: 'POST',
                   headers: {
