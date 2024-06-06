@@ -21,6 +21,7 @@ import ManageUser from "../pages/Dashboard/ManageUser";
 import ManageProperty from "../pages/Dashboard/ManageProperty";
 import ReviewByAdmin from "../pages/Dashboard/ReviewByAdmin";
 import AddProperty from "../pages/Dashboard/AddProperty";
+import PropertyAddedByAgent from "../pages/Dashboard/PropertyAddedByAgent";
 
 
 const router = createBrowserRouter([
@@ -117,6 +118,11 @@ const router = createBrowserRouter([
           {
             path: 'add-property',
             element: <AddProperty></AddProperty>
+          },
+         
+          {
+            path: 'property-list',
+            element: <PropertyAddedByAgent></PropertyAddedByAgent>
           },
          
         ]

@@ -150,7 +150,7 @@ const Dashboard = () => {
                     </li>
                     <li className="mb-3 border-b-3">
                       <NavLink
-                        to={"/dashboard/sellerpayment"}
+                        to={"/dashboard/property-list"}
                         className={({ isActive }) =>
                           isActive
                             ? "text-special-button-hover border-special-button-hover"
