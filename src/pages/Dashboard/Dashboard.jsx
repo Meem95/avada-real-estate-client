@@ -21,6 +21,7 @@ import UseAdmin from "../../hooks/useAdmin";
 import UseSeller from "../../hooks/useSeller";
 import { CgProfile } from "react-icons/cg";
 import sidebarImage from "../../assets/images/sidebar4.png"; 
+import Profile from "./Profile";
 
 const Dashboard = () => {
   const [isAdmin] = UseAdmin();
@@ -57,7 +58,7 @@ const Dashboard = () => {
                 <ul className="md:p-4 p-1 md:flex md:flex-col md:justify-start md:items-start">
                   <li className="mb-3 border-b-3">
                     <NavLink
-                      to={"/dashboard"}
+                      to={"/dashboard/profile"}
                       end
                       className={({ isActive }) =>
                         isActive
@@ -196,14 +197,16 @@ const Dashboard = () => {
                   <ul className="md:p-4 p-1 md:flex md:flex-col md:justify-start md:items-start">
                     <li className="mb-3 border-b-3">
                       <NavLink
-                        to={"/dashboard"}
+                        to={"/profile"}
                         end
                         className={({ isActive }) =>
                           isActive
                             ? "text-special-button-hover border-special-button-hover"
                             : "text-center border-b-3 border-primary font-normal gap-6 text-[18px]"
                         }
+                        
                       >
+                       
                         <p className="flex text-center md:flex-row flex-col gap-2 justify-center items-center">
                         <CgProfile className="md:text-3xl" />User Profile
                         </p>

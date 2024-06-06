@@ -16,6 +16,7 @@ import Request from "../pages/MyList/Request";
 import AllProperty from "../pages/AllProperty";
 import PropertyDetails from "../pages/Property/PropertyDetails";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import Profile from "../pages/Dashboard/Profile";
 
 
 const router = createBrowserRouter([
@@ -94,8 +95,8 @@ const router = createBrowserRouter([
         children: [
           // normal user routes
           {
-            path: 'userHome',
-            //element: <UserHome></UserHome>
+            path: 'profile',
+            element: <Profile></Profile>
           },
          
         ]
