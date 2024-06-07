@@ -8,11 +8,14 @@ import r2 from "../../assets/images/r2.png";
 
 const Review = () => {
   return (
-    <div className="max-w-7xl mx-auto ">
-      <div>
-        <h1 className="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white">What Our Customers Are Saying  <span className="text-lime-600">About Us</span></h1>
+    <div className="max-w-7xl mx-auto my-16">
+      <div className="text-center">
+        <h1 className="text-2xl font-semibold  text-gray-800 capitalize lg:text-3xl dark:text-white">What Our Customers Are Saying  <span className="text-[#65bc7b]">About Us</span></h1>
+        <p className="max-w-5xl mx-auto mt-4 text-gray-500">
+        Our customers' satisfaction is our top priority. Hear from our happy clients who have found their dream homes and experienced exceptional service. Discover why we're the trusted choice in real estate.
+        </p>
       </div>
-      <div className="my-10">
+      <div className="my-5">
         <Swiper
           navigation={true}
           modules={[Navigation]}
@@ -40,7 +43,7 @@ const Review = () => {
                         “ The food at H-Food exceeded my expectations! Every dish was bursting with flavor, and the presentation was impeccable. I particularly enjoyed the freshness of the ingredients and the attention to detail in every bite. It was truly a memorable dining experience that I can't wait to repeat. ”
                       </p>
 
-                      <h3 className="mt-6 text-lg font-medium text-lime-600">
+                      <h3 className="mt-6 text-lg font-medium text-[#65bc7b]">
                       Sarah Johnson
                       </h3>
                       <p className="text-gray-600 dark:text-gray-300">
@@ -73,7 +76,7 @@ const Review = () => {
  
                       </p>
 
-                      <h3 className="mt-6 text-lg font-medium text-lime-600">
+                      <h3 className="mt-6 text-lg font-medium text-[#65bc7b]">
                       Michael Lee
                       </h3>
                       <p className="text-gray-600 dark:text-gray-300">
@@ -105,7 +108,7 @@ const Review = () => {
                         “ H-Food truly impressed me with their culinary skills. The food was a delightful blend of flavors and textures that left me craving for more. The attention to detail in every dish was evident, and it's clear that the chefs put their heart and soul into their creations. I highly recommend H-Food to anyone looking for a culinary delight that tantalizes the taste buds. ”
                       </p>
 
-                      <h3 className="mt-6 text-lg font-medium text-lime-600">
+                      <h3 className="mt-6 text-lg font-medium text-[#65bc7b]">
                       Emily Thompson
                       </h3>
                       <p className="text-gray-600 dark:text-gray-300">

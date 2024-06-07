@@ -8,7 +8,7 @@ import { EffectCoverflow, Pagination } from "swiper/modules";
 const Gallery = () => {
   return (
     <div className="mb-6">
-      <div className="mb-10 space-y-4 text-center">
+      <div className=" space-y-4 text-center">
         <h1 className="text-4xl font-semibold leading-tight">Our Gallery</h1>
         <p className="px-4 sm:px-8 lg:px-24">
           Explore our exclusive collection of luxury homes, each offering

@@ -26,7 +26,6 @@ const Home = () => {
       <Fade direction="left" duration="2000">
         <Gallery />
       </Fade>
-
       <div>
         <Review />
       </div>
