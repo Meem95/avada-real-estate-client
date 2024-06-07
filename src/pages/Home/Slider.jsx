@@ -9,6 +9,7 @@ import 'swiper/css/scrollbar';
 
 // import required modules
 import { Scrollbar } from 'swiper/modules';
+import { Link } from 'react-router-dom';
 
 const Slider = () => {
   return (
@@ -16,30 +17,30 @@ const Slider = () => {
       <div className="flex flex-col lg:flex-row  gap-4 mx-auto ">
         <div className=" px-4 py-16 rounded-md sm:px-12 md:px-16 xl:col-span-1">
           <h1 className="text-5xl font-extrabold text-black">
-            Build it with Mamba
+          Dream Homes Real Estate
           </h1>
           <p className="my-8">
             <span className="font-medium text-black">
               Modular and versatile.
             </span>
-            Fugit vero facilis dolor sit neque cupiditate minus esse accusamus
-            cumque at.
+            Find your perfect home with us - the best properties in the best locations.
           </p>
-          <button
+          <Link to='/all-property'><button
             type="button"
             className="w-1/2 p-4 font-semibold rounded text-white bg-black"
           >
-            Join the waitlist
-          </button>
+            Join Us
+          </button></Link>
+          
 
           <div className="flex flex-col lg:flex-row mt-8">
             <div className="stat w-3/5 " >
-              <div className="stat-value">25.6K</div>
-              <div className="stat-desc">21% more than last month</div>
+              <div className="stat-value">2.6K</div>
+              <div className="stat-desc text-gray-800">2% more User than last month</div>
             </div>
             <div className="stat ">
-              <div className="stat-value">25.6K</div>
-              <div className="stat-desc">21% more than last month</div>
+              <div className="stat-value">5.6K</div>
+              <div className="stat-desc text-gray-800">6% more sales than last month</div>
             </div>
           </div>
         </div>
@@ -49,10 +50,13 @@ const Slider = () => {
           hide: true,
         }}
         modules={[Scrollbar]}
+        loop={true}
         className="mySwiper"
+        
       >
-        <SwiperSlide><img src='https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg'></img></SwiperSlide>
-        <SwiperSlide><img src='https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg'></img></SwiperSlide>
+        <SwiperSlide><img src='https://i.ibb.co/nfFpWFY/istockphoto-1409298953-612x612.jpg'></img></SwiperSlide>
+        <SwiperSlide><img src='https://i.ibb.co/18kcXSH/house-loan-concept-isolated-white-background-53876-33025.jpg'></img></SwiperSlide>
+        <SwiperSlide><img src='https://i.ibb.co/bdHL3dn/depositphotos-21515189-stock-photo-agent-with-house-model-and.webp'></img></SwiperSlide>
         
       </Swiper>
         </div>
