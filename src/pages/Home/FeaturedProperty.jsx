@@ -21,6 +21,11 @@ const FeaturedProperty = () => {
 
   return (
     <motion.div whileHover={{ scale: 1.02 }}>
+      <div className="mb-16 space-y-4 text-center">
+			<h1 className="text-4xl font-semibold leading-tight">Featured Property</h1>
+			<p className="px-4 sm:px-8 lg:px-24">Discover unparalleled elegance and modern design in our featured property, offering breathtaking views and exceptional living spaces. </p>
+			
+		</div>
       <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
         <SingleProperty></SingleProperty>
       </div>

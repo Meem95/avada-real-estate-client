@@ -16,7 +16,7 @@ const Home = () => {
       <div>
         <Slider />
       </div>
-     
+
       <div className="">
         <FeaturedProperty />
       </div>
@@ -24,11 +24,9 @@ const Home = () => {
         <Pricing />
       </div>
       <Fade direction="left" duration="2000">
-  
-          <Gallery />
-       
+        <Gallery />
       </Fade>
-      
+
       <div>
         <Review />
       </div>

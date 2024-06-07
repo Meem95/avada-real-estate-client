@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-
+import { IoLocationSharp } from "react-icons/io5";
 const SingleProperty = () => {
   return (
     <div>
       <div className="bg-white relative shadow-md rounded-md overflow-hidden m-6">
         <div className="absolute top-3 left-0 bg-[#65bc7b] text-white text-xs font-bold px-3 py-1 transform -translate-y-1/2 z-10">
-          Featured
+          varification status
         </div>
         <div className="relative">
           <img
@@ -24,43 +24,30 @@ const SingleProperty = () => {
           </div>
         </div>
         <div className="p-4">
-          <h3 className="text-lg font-bold">Home In Merrick Way</h3>
-          <p className="text-sm text-gray-600 my-3">
+          <h3 className="text-xl font-bold">title</h3>
+          <p className="text-md text-gray-600 my-3">
             Enchanting three bedrooms, three bath home with spacious one
             bedroom, one bath...
           </p>
           <div className="flex space-x-4">
+           
             <div>
-              <span className="block text-xs font-bold">Bedrooms</span>
+              <span className="block text-xs font-bold">Location</span>
               <div className="flex items-center mt-1">
-                <i className="fas fa-th-large text-gray-500"></i>
-                <span className="ml-2 text-xs font-bold">3</span>
-              </div>
-            </div>
-            <div>
-              <span className="block text-xs font-bold">Bathrooms</span>
-              <div className="flex items-center mt-1">
-                <i className="fas fa-shower text-gray-500"></i>
-                <span className="ml-2 text-xs font-bold">3</span>
-              </div>
-            </div>
-            <div>
-              <span className="block text-xs font-bold">Area</span>
-              <div className="flex items-center mt-1">
-                <i className="fas fa-vector-square text-gray-500"></i>
-                <span className="ml-2 text-xs font-bold">
-                  4300<span className="text-gray-500 ml-1">Sq Ft</span>
+              <IoLocationSharp />
+                <span className="ml-2 text-sm font-bold">
+                  121 arrielle dr, newark, DE
                 </span>
               </div>
             </div>
           </div>
           <div className="mt-4">
-            <span className="block text-xs font-bold">For Sale</span>
-            <span className="text-[#65bc7b] text-lg font-bold">$540,000</span>
+            <span className="block text-xs font-bold">Price</span>
+            <span className="text-[#65bc7b] text-lg font-bold">$540,000 - $600,00</span>
           </div>
           <div className="flex justify-center">
             <Link to="/property-details">
-            <button className="relative overflow-hidden  border border-[#65bc7b] text-[#65bc7b] py-3 px-3 text-sm font-bold uppercase tracking-wider transition-all duration-150 ease-in-out focus:outline-none group mt-3">
+            <button className="relative overflow-hidden  border border-[#65bc7b] text-[#65bc7b] py-3 px-3 text-xs font-bold uppercase tracking-wider transition-all duration-150 ease-in-out focus:outline-none group mt-3">
                 <span className="absolute inset-0 bg-[#65bc7b] transform scale-x-0 origin-left transition-transform duration-150 ease-in-out group-hover:scale-x-100"></span>
                 <span className="relative z-10 transition-colors duration-150 ease-in-out group-hover:text-white">
                   View Property
