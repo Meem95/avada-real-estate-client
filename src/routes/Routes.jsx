@@ -28,6 +28,7 @@ import RequestedProperty from "../pages/Dashboard/RequestedProperty";
 import UserWishlist from "../pages/Dashboard/UserWishlist";
 import OfferedProperty from "../pages/Dashboard/OfferedProperty";
 import BoughtProperty from "../pages/Dashboard/BoughtProperty";
+import ManageReviewByUser from "../pages/Dashboard/ManageReviewByUser";
 
 
 const router = createBrowserRouter([
@@ -157,7 +158,7 @@ const router = createBrowserRouter([
          
           {
             path: 'manage-review-by-user',
-            element: <BoughtProperty></BoughtProperty>
+            element: <ManageReviewByUser></ManageReviewByUser>
           },
          
         ]
