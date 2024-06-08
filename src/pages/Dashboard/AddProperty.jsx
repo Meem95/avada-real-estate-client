@@ -1,11 +1,58 @@
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+
 const AddProperty = () => {
+  const { user } = useContext(AuthContext);
+  const handleAddProperty = event => {
+  
+    event.preventDefault();
+
+    const form = event.target;
+
+    const title = form.title.value;
+    const location = form.location.value;
+    const image = form.image.value;
+    const status = "pending";
+    const first_price = form.first_price.value;
+    const second_price = form.second_price.value;
+    const email = user.email;
+    const name = user.displayName;
+    const userImage = user.photoURL;
+
+    const newProperty = { title, location,image, status, first_price, second_price, email ,name,userImage}
+
+    console.log(newProperty);
+
+    //send data to the server
+    fetch('http://localhost:5000/property', {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(newProperty)
+    })
+        .then(res => res.json())
+        .then(data => {
+         
+            console.log(data);
+            form.reset();
+            if(data.insertedId){
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Property Added Successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                  })
+            }
+        })
+}
   return (
     <div>
       <div className="text-center m-5 text-4xl">
         <h1>Add Property</h1>
       </div>
       <div className="max-w-6xl mx-auto  p-4">
-        <form>
+        <form onSubmit={handleAddProperty}>
           <div className="flex gap-8 ">
             <div className="flex-1">
               <label className="block mb-2 dark:text-white" htmlFor="name">
@@ -15,8 +62,8 @@ const AddProperty = () => {
                 className="w-full p-2 border rounded-md focus:outline-[#65bc7b]"
                 type="text"
                 placeholder=" Title"
-                id="food_name"
-                name="name"
+                id="title"
+                name="title"
                 required
               />
 
@@ -44,8 +91,8 @@ const AddProperty = () => {
                 className="w-full p-2 border rounded-md focus:outline-[#65bc7b]"
                 type="number"
                 placeholder="Enter Second Price"
-                id="location"
-                name="location"
+                id="second_price"
+                name="second_price"
                 required
               />
             </div>
@@ -70,8 +117,8 @@ const AddProperty = () => {
                 className="w-full p-2 border rounded-md focus:outline-[#65bc7b]"
                 type="number"
                 placeholder="Enter First Price"
-                id="location"
-                name="location"
+                id="first_price"
+                name="first_price"
                 required
               />
             </div>

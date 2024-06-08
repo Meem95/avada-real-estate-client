@@ -1,4 +1,4 @@
-import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import {  GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
@@ -18,17 +18,20 @@ const Login = () => {
   const navigate = useNavigate();
   console.log('location i n the login page', location)
   const provider = new GoogleAuthProvider();
-  const githubProvider = new GithubAuthProvider();
 
   const handleGoogleSignIn = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         const loggedInUser = result.user;
         const email = result.user.email;
+        const displayName = result.user.displayName;
+        const photoURL = result.user.photoURL;
+        const createdAt = result.user?.metadata?.creationTime;
+        const role = 'user';
         console.log(loggedInUser);
         setUser(loggedInUser);
-        const user = { email };
-        axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+        const user = { email ,displayName,photoURL,role,createdAt: createdAt};
+        axios.post('http://localhost:5000/user', user, { withCredentials: true })
           .then(res => {
             console.log(res.data)
             if (res.data.success) {

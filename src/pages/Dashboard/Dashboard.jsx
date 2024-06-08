@@ -25,6 +25,7 @@ import Profile from "./Profile";
 
 const Dashboard = () => {
   const [isAdmin] = UseAdmin();
+  console.log(isAdmin)
   const [isSeller] = UseSeller();
 
   return (
