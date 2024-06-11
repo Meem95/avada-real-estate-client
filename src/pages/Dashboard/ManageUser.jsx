@@ -1,16 +1,82 @@
 import React from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import { FaTrashAlt, FaUsers } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const ManageUser = () => {
+  const axiosSecure = useAxiosSecure();
+  const { data: users = [], refetch } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/users");
+      return res.data;
+    },
+  });
+  const handleMakeAdmin = (user) => {
+    axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${user.name} is an Admin Now!`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
+  const handleMakeAgent = (user) => {
+    axiosSecure.patch(`/users/agent/${user._id}`).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${user.name} is an Admin Now!`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
+  const handleDeleteUser = (user) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/users/${user._id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
   return (
     <div>
-        <div className="text-center mt-5 text-4xl">
-            <h1>All Users</h1>
-        </div>
+      <div className="text-center mt-5 text-4xl">
+        <h1>All Users {users.length}</h1>
+      </div>
       <div className="overflow-x-auto max-w-6xl mx-auto mt-5">
         <table className="table">
-          {/* head */}
           <thead>
             <tr>
+              <th>#</th>
               <th>Name</th>
               <th>Email</th>
               <th>Make Admin</th>
@@ -20,82 +86,71 @@ const ManageUser = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-             
-              <td>
-                <div className="flex items-center gap-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img
-                        src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png"
-                        alt="Avatar Tailwind CSS Component"
-                      />
+            {users.map((user, index) => (
+              <tr key={user._id}>
+                <th>{index + 1}</th>
+                <td>
+                  <div className="flex items-center gap-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12">
+                        <img
+                          src={user.photoURL}
+                          alt="Avatar Tailwind CSS Component"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-bold">{user.name}</div>
                     </div>
                   </div>
-                  <div>
-                    <div className="font-bold">Hart Hagerty</div>
-                   
-                  </div>
-                </div>
-              </td>
-              <td>
-              meemfatema95@gmail.com
-             
-              </td>
-              
-              <th>
-                <button className="btn btn-ghost btn-sm bg-blue-500"> Admin</button>
-              </th>
-              <th>
-                <button className="btn btn-ghost btn-sm  bg-green-500">Agent</button>
-              </th>
-              <th>
-                <button className="btn btn-ghost btn-sm  bg-amber-500">Fraud</button>
-              </th>
-              <th>
-                <button className="btn btn-ghost btn-sm bg-red-500">Delete</button>
-              </th>
-            </tr>
-            <tr>
-             
-              <td>
-                <div className="flex items-center gap-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img
-                        src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png"
-                        alt="Avatar Tailwind CSS Component"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="font-bold">Hart Hagerty</div>
-                   
-                  </div>
-                </div>
-              </td>
-              <td>
-              meemfatema95@gmail.com
-             
-              </td>
-              
-              <th>
-                <button className="btn btn-ghost btn-sm bg-blue-500"> Admin</button>
-              </th>
-              <th>
-                <button className="btn btn-ghost btn-sm  bg-green-500">Agent</button>
-              </th>
-              <th>
-                <button className="btn btn-ghost btn-sm  bg-amber-500">Fraud</button>
-              </th>
-              <th>
-                <button className="btn btn-ghost btn-sm bg-red-500">Delete</button>
-              </th>
-            </tr>
+                </td>
+                <td>{user.email}</td>
 
-            
+                <th>
+                  {user.role === "admin" ? (
+                    "Admin"
+                  ) : (
+                    <button
+                      onClick={() => handleMakeAdmin(user)}
+                      className="btn btn-ghost btn-sm bg-blue-500"
+                    >
+                      <FaUsers
+                        className="text-white 
+                                        text-2xl"
+                      ></FaUsers>
+                    </button>
+                  )}
+                </th>
+                <th>
+                  <button>Agent</button>
+
+                  {user.role === "agent" ? (
+                    "Agent"
+                  ) : (
+                    <button
+                      onClick={() => handleMakeAgent(user)}
+                      className="btn btn-ghost btn-sm bg-green-500"
+                    >
+                      <FaUsers className="text-white text-2xl" />
+                    </button>
+                  )}
+                </th>
+                <th>
+                  <button className="btn btn-ghost btn-sm  bg-amber-500">
+                    Fraud
+                  </button>
+                </th>
+                <th>
+                  <button
+                    onClick={() => handleDeleteUser(user)}
+                    className="btn btn-ghost btn-sm"
+                  >
+                    <FaTrashAlt className="text-red-600"></FaTrashAlt>
+                  </button>
+                </th>
+              </tr>
+            ))}
           </tbody>
-
         </table>
       </div>
     </div>

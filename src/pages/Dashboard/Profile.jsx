@@ -10,7 +10,7 @@ const Profile = () => {
   const { data: users = [], refetch } = useQuery({
     queryKey: ['users'],
     queryFn: async () => {
-        const res = await axiosSecure.get('/user');
+        const res = await axiosSecure.get('/users');
         return res.data;
     }
    
@@ -19,7 +19,7 @@ console.log(users);
   return (
     <div>
 		  <div  className="text-center mt-5 text-4xl">
-            <h1 >Profile</h1>
+            <h1 >Profile of an {}</h1>
         </div>
       <div className="flex flex-col mt-10 justify-center max-w-xs mx-auto p-6 shadow-md rounded-xl sm:px-12 bg-gray-900 text-gray-100">
         <img

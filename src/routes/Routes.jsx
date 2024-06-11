@@ -29,6 +29,7 @@ import UserWishlist from "../pages/Dashboard/UserWishlist";
 import OfferedProperty from "../pages/Dashboard/OfferedProperty";
 import BoughtProperty from "../pages/Dashboard/BoughtProperty";
 import ManageReviewByUser from "../pages/Dashboard/ManageReviewByUser";
+import AdminRoute from "./AdminRoute";
 
 
 const router = createBrowserRouter([
@@ -109,7 +110,8 @@ const router = createBrowserRouter([
           //admin's routes
           {
             path: 'profile',
-            element: <Profile></Profile>
+            element: 
+            <AdminRoute><Profile></Profile></AdminRoute>
           },
           {
             path: 'manage-user',
