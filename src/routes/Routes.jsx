@@ -106,6 +106,7 @@ const router = createBrowserRouter([
         // element: <Dashboard></Dashboard>,
         children: [
           // normal user routes
+          //admin's routes
           {
             path: 'profile',
             element: <Profile></Profile>

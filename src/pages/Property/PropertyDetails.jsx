@@ -8,6 +8,7 @@ import { IoStar   } from "react-icons/io5";
 import { FaStarHalfStroke } from "react-icons/fa6";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 const PropertyDetails = () => {
+  const { user } = useContext(AuthContext);
   const [imgId, setImgId] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
 

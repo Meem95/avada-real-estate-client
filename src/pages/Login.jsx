@@ -31,7 +31,7 @@ const Login = () => {
         console.log(loggedInUser);
         setUser(loggedInUser);
         const user = { email ,displayName,photoURL,role,createdAt: createdAt};
-        axios.post('http://localhost:5000/user', user, { withCredentials: true })
+        axios.post('http://localhost:5000/users', user, { withCredentials: true })
           .then(res => {
             console.log(res.data)
             if (res.data.success) {

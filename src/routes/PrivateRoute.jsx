@@ -1,28 +1,20 @@
-import { useContext } from "react";
-import { AuthContext } from "../providers/AuthProvider";
-import { Navigate, useLocation } from "react-router-dom";
-import { PropTypes } from "prop-types";
+import { Navigate, useLocation } from "react-router";
+import useAuth from "../hooks/useAuth";
 
 const PrivateRoute = ({ children }) => {
-    const { user, loading } = useContext(AuthContext);
+    const { user, loading } = useAuth();
     const location = useLocation();
-    console.log(location.pathname);
 
-    if (loading) {
-        return <div className="flex justify-center h-screen items-center"> <span className="loading loading-dots loading-lg"></span></div>
+    if(loading){
+        return <progress className="progress w-56"></progress>
     }
 
     if (user) {
         return children;
     }
-    else{
-
-        return <Navigate state={location.pathname} ></Navigate>;
-    }
+    return <Navigate to="/login" state={{from: location}} replace></Navigate>
 
 };
-PrivateRoute.propTypes = {
-    children:PropTypes.node,
-}
+
 
 export default PrivateRoute;

@@ -50,13 +50,13 @@ const Dashboard = () => {
           
           >
             <label htmlFor="" aria-label="close sidebar" className="drawer-overlay"></label>
-            <div className="max-w-6xl flex flex-col lg:mt-2 mt-12 justify-between min-h-screen  bg-opacity-50 font-popins text-white"   style={{
+            <div className="max-w-6xl flex flex-col lg:mt-0 mt-12 justify-between min-h-screen  bg-opacity-50 font-popins text-white"   style={{
               backgroundImage: `url(${sidebarImage})`,
               backgroundSize: 'cover',
               backgroundRepeat: 'no-repeat',
 
             }}>
-              {/* {isAdmin ? ( */}
+              {isAdmin ? (
                 <ul className="md:p-4 p-1 md:flex md:flex-col md:justify-start md:items-start">
                   <li className="mb-3 border-b-3">
                     <NavLink
@@ -117,7 +117,7 @@ const Dashboard = () => {
                     </NavLink>
                   </li>
                 </ul>
-              {/* ) : isSeller ? ( */}
+               ) : isSeller ? (
                 <>
                   <ul className="md:p-4 p-1 md:flex md:flex-col md:justify-start md:items-start">
                     <li className="mb-3 border-b-3">
@@ -194,7 +194,7 @@ const Dashboard = () => {
                         </li>
                   </ul>
                 </>
-              {/* ) : ( */}
+              ) : ( 
                 <>
                   <ul className="md:p-4 p-1 md:flex md:flex-col md:justify-start md:items-start">
                     <li className="mb-3 border-b-3">
@@ -263,7 +263,7 @@ const Dashboard = () => {
                     </li>
                   </ul>
                 </>
-              {/* )} */}
+              )} 
               <div className="divider  "></div>
               <ul className="md:p-4 p-1 md:flex md:flex-col md:justify-start md:items-start">
                

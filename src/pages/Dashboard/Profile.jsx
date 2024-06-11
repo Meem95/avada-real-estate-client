@@ -1,6 +1,21 @@
 import React from "react";
+import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const Profile = () => {
+  const { user } = useAuth();
+  console.log("admin info :",user)
+  const axiosSecure = useAxiosSecure();
+  const { data: users = [], refetch } = useQuery({
+    queryKey: ['users'],
+    queryFn: async () => {
+        const res = await axiosSecure.get('/user');
+        return res.data;
+    }
+   
+})
+console.log(users);
   return (
     <div>
 		  <div  className="text-center mt-5 text-4xl">
@@ -8,16 +23,20 @@ const Profile = () => {
         </div>
       <div className="flex flex-col mt-10 justify-center max-w-xs mx-auto p-6 shadow-md rounded-xl sm:px-12 bg-gray-900 text-gray-100">
         <img
-          src="https://source.unsplash.com/150x150/?portrait?3"
+          src={user.photoURL}
           alt=""
           className="w-32 h-32 mx-auto rounded-full bg-gray-500 aspect-square"
         />
         <div className="space-y-4 text-center divide-y divide-gray-700">
           <div className="my-2 space-y-1">
-            <h2 className="text-xl font-semibold sm:text-2xl">Leroy Jenkins</h2>
-            <p className="px-5 text-xs sm:text-base text-gray-400">
-              Full-stack developer
+          <p className="px-5 text-xs sm:text-base text-gray-400">
+            {user.role}
             </p>
+            <h2 className="text-xl font-semibold sm:text-2xl">{user.displayName}</h2>
+            <p className="px-5 text-sm sm:text-base text-gray-400">
+            {user.email}
+            </p>
+           
           </div>
           <div className="flex justify-center pt-2 space-x-4 align-center">
             <a
