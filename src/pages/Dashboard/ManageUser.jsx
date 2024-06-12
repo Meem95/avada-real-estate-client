@@ -13,9 +13,9 @@ const ManageUser = () => {
       return res.data;
     },
   });
+
   const handleMakeAdmin = (user) => {
     axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
-      console.log(res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({
@@ -28,21 +28,37 @@ const ManageUser = () => {
       }
     });
   };
+
   const handleMakeAgent = (user) => {
     axiosSecure.patch(`/users/agent/${user._id}`).then((res) => {
-      console.log(res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: `${user.name} is an Admin Now!`,
+          title: `${user.name} is an Agent Now!`,
           showConfirmButton: false,
           timer: 1500,
         });
       }
     });
   };
+
+  const handleMakeFraud = (user) => {
+    axiosSecure.patch(`/users/fraud/${user._id}`).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${user.name} is marked as Fraud!`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
+
   const handleDeleteUser = (user) => {
     Swal.fire({
       title: "Are you sure?",
@@ -59,7 +75,7 @@ const ManageUser = () => {
             refetch();
             Swal.fire({
               title: "Deleted!",
-              text: "Your file has been deleted.",
+              text: "User has been deleted.",
               icon: "success",
             });
           }
@@ -67,6 +83,7 @@ const ManageUser = () => {
       }
     });
   };
+
   return (
     <div>
       <div className="text-center mt-5 text-4xl">
@@ -79,9 +96,10 @@ const ManageUser = () => {
               <th>#</th>
               <th>Name</th>
               <th>Email</th>
+              <th>Current Role</th>
               <th>Make Admin</th>
               <th>Make Agent</th>
-              <th>Make Fraud</th>
+              <th>Mark as Fraud</th>
               <th>Delete User</th>
             </tr>
           </thead>
@@ -105,49 +123,51 @@ const ManageUser = () => {
                   </div>
                 </td>
                 <td>{user.email}</td>
-
-                <th>
-                  {user.role === "admin" ? (
-                    "Admin"
+                <td>{user.role}</td>
+                <td>
+                {user.role === "admin" || user.role === "fraud" ? (
+                    user.role === "fraud" ? "Fraud" : "Admin"
                   ) : (
                     <button
                       onClick={() => handleMakeAdmin(user)}
                       className="btn btn-ghost btn-sm bg-blue-500"
                     >
-                      <FaUsers
-                        className="text-white 
-                                        text-2xl"
-                      ></FaUsers>
+                      <FaUsers className="text-white text-2xl" />
                     </button>
                   )}
-                </th>
-                <th>
-                  <button>Agent</button>
-
-                  {user.role === "agent" ? (
-                    "Agent"
+                </td>
+                <td>
+                {user.role === "agent" || user.role === "fraud" ? (
+                    user.role === "fraud" ? "Fraud" : "Agent"
                   ) : (
                     <button
                       onClick={() => handleMakeAgent(user)}
                       className="btn btn-ghost btn-sm bg-green-500"
                     >
-                      <FaUsers className="text-white text-2xl" />
+                      Agent
                     </button>
                   )}
-                </th>
-                <th>
-                  <button className="btn btn-ghost btn-sm  bg-amber-500">
-                    Fraud
-                  </button>
-                </th>
-                <th>
+                </td>
+                <td>
+                  {user.role === "fraud" ? (
+                    "Fraud"
+                  ) : (
+                    <button
+                      onClick={() => handleMakeFraud(user)}
+                      className="btn btn-ghost btn-sm bg-amber-500"
+                    >
+                      Fraud
+                    </button>
+                  )}
+                </td>
+                <td>
                   <button
                     onClick={() => handleDeleteUser(user)}
                     className="btn btn-ghost btn-sm"
                   >
-                    <FaTrashAlt className="text-red-600"></FaTrashAlt>
+                    <FaTrashAlt className="text-red-600" />
                   </button>
-                </th>
+                </td>
               </tr>
             ))}
           </tbody>

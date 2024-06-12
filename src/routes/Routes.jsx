@@ -151,6 +151,10 @@ const router = createBrowserRouter([
             element: <UserWishlist></UserWishlist>
           },
           {
+            path: 'profile',
+            element:<Profile></Profile>
+          },
+          {
             path: 'offer-property',
             element: <OfferedProperty></OfferedProperty>
           },
