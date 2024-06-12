@@ -96,7 +96,6 @@ const ManageUser = () => {
               <th>#</th>
               <th>Name</th>
               <th>Email</th>
-              <th>Current Role</th>
               <th>Make Admin</th>
               <th>Make Agent</th>
               <th>Mark as Fraud</th>
@@ -123,7 +122,7 @@ const ManageUser = () => {
                   </div>
                 </td>
                 <td>{user.email}</td>
-                <td>{user.role}</td>
+               
                 <td>
                 {user.role === "admin" || user.role === "fraud" ? (
                     user.role === "fraud" ? "Fraud" : "Admin"

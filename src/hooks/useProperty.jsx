@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "./useAxiosPublic";
 
-const useMenu = () => {
+const useProperty = () => {
     const axiosPublic = useAxiosPublic();
     // const [menu, setMenu] = useState([]);
     // const [loading, setLoading] = useState(true);
@@ -19,7 +19,7 @@ const useMenu = () => {
     const {data: menu = [], isPending: loading, refetch} = useQuery({
         queryKey: ['menu'], 
         queryFn: async() =>{
-            const res = await axiosPublic.get('/menu');
+            const res = await axiosPublic.get('/property');
             return res.data;
         }
     })
@@ -28,4 +28,4 @@ const useMenu = () => {
     return [menu, loading, refetch]
 }
 
-export default useMenu;
+export default useProperty;

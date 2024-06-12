@@ -126,12 +126,12 @@ const router = createBrowserRouter([
             element: <ReviewByAdmin></ReviewByAdmin>
           },
           {
-            path: 'add-property',
+            path: 'agent/add-property',
             element: <AddProperty></AddProperty>
           },
          
           {
-            path: 'property-list',
+            path: 'agent/property-list',
             element: <PropertyAddedByAgent></PropertyAddedByAgent>
           },
           {

@@ -25,9 +25,9 @@ import Profile from "./Profile";
 
 const Dashboard = () => {
   const [isAdmin] = UseAdmin();
-  console.log(isAdmin)
+  
   const [isSeller] = UseSeller();
-
+  console.log([isSeller])
   return (
     <div>
       <div className="flex">
@@ -137,7 +137,7 @@ const Dashboard = () => {
                     </li>
                     <li className="mb-3 border-b-3">
                       <NavLink
-                        to={"/dashboard/add-property"}
+                        to={"/dashboard/agent/add-property"}
                         className={({ isActive }) =>
                           isActive
                             ? "text-special-button-hover border-special-button-hover"
@@ -151,7 +151,7 @@ const Dashboard = () => {
                     </li>
                     <li className="mb-3 border-b-3">
                       <NavLink
-                        to={"/dashboard/property-list"}
+                        to={"/dashboard/agent/property-list"}
                         className={({ isActive }) =>
                           isActive
                             ? "text-special-button-hover border-special-button-hover"

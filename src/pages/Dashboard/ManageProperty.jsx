@@ -1,13 +1,52 @@
+import React from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useProperty from "../../hooks/useProperty";
+import Swal from "sweetalert2";
+
 const ManageProperty = () => {
+  const [property, , refetch] = useProperty();
+  const axiosSecure = useAxiosSecure();
+
+  const handleVerifiedItem = (item) => {
+    axiosSecure.patch(`/property/${item._id}`).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${item.title} is now Verified!`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
+
+  const handleRejectedItem = (item) => {
+    axiosSecure.patch(`/property/reject/${item._id}`).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: `${item.title} is Rejected!`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
+
   return (
     <div>
       <div className="text-center mt-5 text-4xl">
-        <h1>All Property</h1>
+        <h1>All Properties</h1>
       </div>
-      <div className="overflow-x-auto max-w-6xl mx-auto mt-5">
+      <div className="overflow-x-auto max-w-7xl mx-auto mt-5">
         <table className="table text-center">
           <thead>
             <tr>
+              <th>#</th>
               <th>Property Title</th>
               <th>Property Location</th>
               <th>Agent Name</th>
@@ -18,59 +57,46 @@ const ManageProperty = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <div className="flex items-center gap-3">
-                  <div>
-                    <div className="font-bold">Hart Hagerty</div>
+            {property.map((item, index) => (
+              <tr key={item._id}>
+                <td>{index + 1}</td>
+                <td>
+                  <div className="flex items-center gap-3">
+                    <div>
+                      <div className="font-bold">{item.title}</div>
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td>Dhaka, BAngladesh</td>
-              <td>Meem</td>
-              <td>meemfatema95@gmail.com</td>
-              <td>5000 to 6000</td>
-
-             
-              <th>
-                <button className="btn btn-ghost btn-sm  bg-green-500">
-                  Verify
-                </button>
-              </th>
-             
-              <th>
-                <button className="btn btn-ghost btn-sm bg-red-500">
-                  Delete
-                </button>
-              </th>
-            </tr>
-            <tr>
-              <td>
-                <div className="flex items-center gap-3">
-                  <div>
-                    <div className="font-bold">Hart Hagerty</div>
-                  </div>
-                </div>
-              </td>
-              <td>Dhaka, BAngladesh</td>
-              <td>Meem</td>
-              <td>meemfatema95@gmail.com</td>
-              <td>5000 to 6000</td>
-
-             
-              <th>
-                <button className="btn btn-ghost btn-sm  bg-green-500">
-                  Verify
-                </button>
-              </th>
-             
-              <th>
-                <button className="btn btn-ghost btn-sm bg-red-500">
-                  Delete
-                </button>
-              </th>
-            </tr>
-           
+                </td>
+                <td>{item.location}</td>
+                <td>{item.name}</td>
+                <td>{item.email}</td>
+                <td>
+                  {item.first_price} to {item.second_price}
+                </td>
+                <td>
+                {item.status === "verified" ? (
+                    "Verified"
+                  ) : item.status === "rejected" ? (
+                    "Rejected"
+                  ) : (
+                    <>
+                      <button
+                        onClick={() => handleVerifiedItem(item)}
+                        className="btn btn-ghost btn-sm bg-amber-500"
+                      >
+                        Verify
+                      </button>
+                      <button
+                        onClick={() => handleRejectedItem(item)}
+                        className="btn btn-ghost btn-sm bg-red-500"
+                      >
+                        Reject
+                      </button>
+                    </>
+                  )}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
