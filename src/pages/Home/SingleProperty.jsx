@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import { IoLocationSharp } from "react-icons/io5";
-const SingleProperty = () => {
+
+const SingleProperty = ({item}) => {
+  const { title, location, second_price, first_price, _id ,name,email,status} = item;
   return (
     <div>
       <div className="bg-white relative shadow-md rounded-md overflow-hidden m-6">
         <div className="absolute top-3 left-0 bg-[#65bc7b] text-white text-xs font-bold px-3 py-1 transform -translate-y-1/2 z-10">
-          varification status
+          {status}
         </div>
         <div className="relative">
           <img
@@ -24,11 +26,7 @@ const SingleProperty = () => {
           </div>
         </div>
         <div className="p-4">
-          <h3 className="text-xl font-bold">title</h3>
-          <p className="text-md text-gray-600 my-3">
-            Enchanting three bedrooms, three bath home with spacious one
-            bedroom, one bath...
-          </p>
+          <h3 className="text-xl font-bold">{title}</h3>
           <div className="flex space-x-4">
            
             <div>
@@ -36,17 +34,18 @@ const SingleProperty = () => {
               <div className="flex items-center mt-1">
               <IoLocationSharp />
                 <span className="ml-2 text-sm font-bold">
-                  121 arrielle dr, newark, DE
+                  {location}
                 </span>
               </div>
             </div>
           </div>
           <div className="mt-4">
             <span className="block text-xs font-bold">Price</span>
-            <span className="text-[#65bc7b] text-lg font-bold">$540,000 - $600,00</span>
+            <span className="text-[#65bc7b] text-lg font-bold">{first_price } - {second_price}</span>
           </div>
           <div className="flex justify-center">
-            <Link to="/property-details">
+            
+            <Link to={`/property-details/${_id}`}>
             <button className="relative overflow-hidden  border border-[#65bc7b] text-[#65bc7b] py-3 px-3 text-xs font-bold uppercase tracking-wider transition-all duration-150 ease-in-out focus:outline-none group mt-3">
                 <span className="absolute inset-0 bg-[#65bc7b] transform scale-x-0 origin-left transition-transform duration-150 ease-in-out group-hover:scale-x-100"></span>
                 <span className="relative z-10 transition-colors duration-150 ease-in-out group-hover:text-white">

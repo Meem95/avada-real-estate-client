@@ -8,9 +8,11 @@ import { IoStar   } from "react-icons/io5";
 import { FaStarHalfStroke } from "react-icons/fa6";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 const PropertyDetails = () => {
+  const { title, location, second_price, first_price, _id ,name,email} = useLoaderData();
   const { user } = useContext(AuthContext);
   const [imgId, setImgId] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
+ 
 
   useEffect(() => {
     const slideImage = () => {
@@ -30,11 +32,33 @@ const PropertyDetails = () => {
     setIsModalOpen(!isModalOpen);
   };
 
+ 
   const handleSubmit = (event) => {
     event.preventDefault();
     const review = event.target.review.value;
-    Swal.fire('Review Submitted', review, 'success');
-    setIsModalOpen(false);
+    const email = user.email;
+    const name = user.displayName;
+    const userImage = user.photoURL;
+
+    const newReview = { review, email ,name,userImage}
+    fetch('http://localhost:5000/reviews', {
+      method: 'POST',
+      headers: {
+          'content-type': 'application/json'
+      },
+      body: JSON.stringify(newReview)
+  })
+      .then(res => res.json())
+      .then(data => {
+       
+          console.log(data);
+        
+          if(data.insertedId){
+            Swal.fire('Review Submitted', review, 'success');
+            setIsModalOpen(false);
+          }
+      })
+   
   };
 
   return (
@@ -56,9 +80,10 @@ const PropertyDetails = () => {
             {/* Card right */}
             <div className="p-8">
               <h2 className="text-3xl capitalize font-bold text-gray-800 mb-4 relative">
-                nike shoes
-                <span className="absolute left-0 bottom-0 h-1 w-20 bg-gray-800"></span>
+               {title}
+                <span className="absolute left-0 bottom-0 h-1 w-20 bg-gray-800 "></span>
               </h2>
+              <span className="font-bold pb-4">Agent: {name}</span>
              
               <div className="text-[#65bc7b] mb-4 flex">
               <IoStar />
@@ -69,12 +94,12 @@ const PropertyDetails = () => {
                
               </div>
               <div className="mb-4 text-lg font-semibold">
-                <p> Price: <span className="text-[#65bc7b]">$249.00 (5%)</span></p>
+                <p> Price: <span className="text-[#65bc7b]">{first_price} - {second_price}</span></p>
               </div>
               <div className="mb-4">
-                <h2 className="text-2xl text-gray-800 capitalize mb-2">about this item: </h2>
+                <h2 className="text-2xl text-gray-800 capitalize mb-2">about this Property: </h2>
                 <p className="text-sm text-gray-600 mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eveniet veniam tempora fuga tenetur placeat sapiente architecto illum soluta consequuntur, aspernatur quidem at sequi ipsa!</p>
-                <p className="text-sm text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, perferendis eius. Dignissimos, labore suscipit. Unde.</p>
+          
                 <ul className="mt-4 space-y-2 text-sm text-gray-600">
                   <li className="flex items-center">
                     <img src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/checked.png" alt="check icon" className="w-4 h-4 mr-2" />

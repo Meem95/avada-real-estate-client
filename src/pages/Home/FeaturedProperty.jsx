@@ -7,9 +7,13 @@ import { CiLocationOn } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import { PropTypes } from "prop-types";
 import { motion } from "framer-motion";
+import useProperty from "../../hooks/useProperty";
 import SingleProperty from "./SingleProperty";
 
+
 const FeaturedProperty = () => {
+  const [property] = useProperty();
+  const popular = property.filter(item => item.status === 'verified');
   const truncateString = (str, numWords) => {
     const words = str.split(" ");
     if (words.length > numWords) {
@@ -27,7 +31,13 @@ const FeaturedProperty = () => {
 			
 		</div>
       <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
-        <SingleProperty></SingleProperty>
+      {
+                    popular.map(item => <SingleProperty
+                        key={item._id}
+                        item={item}
+                    ></SingleProperty>)
+                }
+        
       </div>
     </motion.div>
   );

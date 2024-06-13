@@ -16,8 +16,8 @@ const useProperty = () => {
     //         });
     // }, [])
 
-    const {data: menu = [], isPending: loading, refetch} = useQuery({
-        queryKey: ['menu'], 
+    const {data: property = [], isPending: loading, refetch} = useQuery({
+        queryKey: ['property'], 
         queryFn: async() =>{
             const res = await axiosPublic.get('/property');
             return res.data;
@@ -25,7 +25,7 @@ const useProperty = () => {
     })
 
 
-    return [menu, loading, refetch]
+    return [property, loading, refetch]
 }
 
 export default useProperty;

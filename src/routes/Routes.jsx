@@ -56,10 +56,10 @@ const router = createBrowserRouter([
                 element: <AllProperty></AllProperty>
             },
             {
-                path: '/property-details',
+                path: '/property-details/:id',
                 // element:<PrivateRoute> <PropertyDetails></PropertyDetails></PrivateRoute>,
-                element:<PropertyDetails></PropertyDetails>,
-              //  loader:({params})=>fetch(`https://b9a11-food-server.vercel.app/food/${params.id}`)
+                element:<PrivateRoute> <PropertyDetails></PropertyDetails></PrivateRoute>,
+                loader:({params})=>fetch(`http://localhost:5000/property/${params.id}`)
             },
             
             {
@@ -123,7 +123,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'manage-review-by-admin',
-            element: <ReviewByAdmin></ReviewByAdmin>
+            element: <ReviewByAdmin></ReviewByAdmin>,
           },
           {
             path: 'agent/add-property',
@@ -135,8 +135,9 @@ const router = createBrowserRouter([
             element: <PropertyAddedByAgent></PropertyAddedByAgent>
           },
           {
-            path: 'update-property',
-            element: <UpdateProperty></UpdateProperty>
+            path: 'update-property/:id',
+            element: <UpdateProperty></UpdateProperty>,
+            loader: ({params}) => fetch(`http://localhost:5000/property/${params.id}`)
           },
           {
             path: 'sold-property',
@@ -165,7 +166,8 @@ const router = createBrowserRouter([
          
           {
             path: 'manage-review-by-user',
-            element: <ManageReviewByUser></ManageReviewByUser>
+            element: <ManageReviewByUser></ManageReviewByUser>,
+         
           },
          
         ]
