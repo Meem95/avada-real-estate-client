@@ -30,6 +30,7 @@ import OfferedProperty from "../pages/Dashboard/OfferedProperty";
 import BoughtProperty from "../pages/Dashboard/BoughtProperty";
 import ManageReviewByUser from "../pages/Dashboard/ManageReviewByUser";
 import AdminRoute from "./AdminRoute";
+import UserProfile from "../pages/Dashboard/UserProfile";
 
 
 const router = createBrowserRouter([
@@ -75,17 +76,7 @@ const router = createBrowserRouter([
                 loader:()=>fetch('https://b9a11-food-server.vercel.app/food')
 
             },
-            {
-                path: 'update-my-list/:id', 
-                element:<PrivateRoute><UpdateFood></UpdateFood></PrivateRoute>, 
-                loader: ({params}) => fetch(`https://b9a11-food-server.vercel.app/food/${params.id}`)
-              },
-            
-            {
-                path: '/available-food',
-                element: <AllAvailableFood></AllAvailableFood>,
-                loader:()=>fetch('https://b9a11-food-server.vercel.app/food')
-            },
+           
             {
                 path: '/contact',
                 element: <Contact></Contact>
@@ -147,13 +138,15 @@ const router = createBrowserRouter([
             path: 'requested-property',
             element: <RequestedProperty></RequestedProperty>
           },
+
+          /// All User Route
           {
             path: 'user-wishlist',
             element: <UserWishlist></UserWishlist>
           },
           {
-            path: 'profile',
-            element:<Profile></Profile>
+            path: 'user-profile',
+            element:<UserProfile></UserProfile>
           },
           {
             path: 'offer-property',

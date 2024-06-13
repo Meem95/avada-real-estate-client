@@ -29,6 +29,8 @@ const UpdateProperty = () => {
       const propertyItem = {
         title: data.title,
         location: data.location,
+        name: name,
+        email: email,
         first_price: parseFloat(data.first_price),
         second_price: parseFloat(data.second_price),
       };
@@ -146,7 +148,7 @@ const UpdateProperty = () => {
               />
               <label
                 className="block mt-4 mb-2 dark:text-white"
-                htmlFor="location"
+                htmlFor="email"
               >
                 Agent Email
               </label>

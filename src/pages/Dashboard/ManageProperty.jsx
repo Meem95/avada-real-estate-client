@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 
 const ManageProperty = () => {
   const [property, , refetch] = useProperty();
+  console.log(property)
   const axiosSecure = useAxiosSecure();
 
   const handleVerifiedItem = (item) => {
@@ -57,7 +58,7 @@ const ManageProperty = () => {
             </tr>
           </thead>
           <tbody>
-            {property.map((item, index) => (
+            {property?.map((item, index) => (
               <tr key={item._id}>
                 <td>{index + 1}</td>
                 <td>
@@ -68,8 +69,8 @@ const ManageProperty = () => {
                   </div>
                 </td>
                 <td>{item.location}</td>
-                <td>{item.name}</td>
-                <td>{item.email}</td>
+                <td>{item?.name}</td>
+                <td>{item?.email}</td>
                 <td>
                   {item.first_price} to {item.second_price}
                 </td>

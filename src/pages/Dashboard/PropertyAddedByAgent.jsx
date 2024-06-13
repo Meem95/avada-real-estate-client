@@ -92,7 +92,6 @@ const PropertyAddedByAgent = () => {
                   <div className="flex items-center mt-1">
                     <i className="fas fa-vector-square text-gray-500"></i>
                     <span className="ml-2 text-xs font-bold">
-                      4300
                       <span className="text-gray-500 ml-1">{item.email}</span>
                     </span>
                   </div>

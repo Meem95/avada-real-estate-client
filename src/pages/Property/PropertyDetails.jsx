@@ -7,32 +7,76 @@ import Swal from "sweetalert2";
 import { IoStar   } from "react-icons/io5";
 import { FaStarHalfStroke } from "react-icons/fa6";
 import { IoIosCheckmarkCircle } from "react-icons/io";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 const PropertyDetails = () => {
-  const { title, location, second_price, first_price, _id ,name,email} = useLoaderData();
+  const { title, location,image, second_price, first_price, _id ,name,email} = useLoaderData();
+  const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
-  const [imgId, setImgId] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
  
 
-  useEffect(() => {
-    const slideImage = () => {
-      const displayWidth = document.querySelector('.img-showcase img:first-child');
-      document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
-    };
-
-    window.addEventListener('resize', slideImage);
-    slideImage();
-
-    return () => {
-      window.removeEventListener('resize', slideImage);
-    };
-  }, [imgId]);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
- 
+const handleAddToWishList = async () => {
+  if (user && user.email) {
+    try {
+      const checkRes = await axiosSecure.get(`/wishlists/check/${user.email}/${_id}`);
+      if (checkRes.data.exists) {
+        Swal.fire({
+          position: "top-end",
+          icon: "info",
+          title: `${title} is already in your wishlist`,
+          showConfirmButton: false,
+          timer: 1500
+        });
+      } else {
+        const wishlistItem = {
+          propertyId: _id,
+          email:user.email,
+          name:user.displayName,
+          title,
+          location,
+          image,
+          first_price,
+          second_price,
+          agentEmail:email,
+          agentName:name,
+          
+        };
+        const res = await axiosSecure.post('/wishlists', wishlistItem);
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${title} added to your wishlist`,
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+      }
+    } catch (error) {
+      console.error('Error adding to wishlist:', error);
+    }
+  } else {
+    Swal.fire({
+      title: "You are not Logged In",
+      text: "Please login to add to the wishlist?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, login!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+      
+        navigate('/login', { state: { from: location } });
+      }
+    });
+  }
+};
   const handleSubmit = (event) => {
     event.preventDefault();
     const review = event.target.review.value;
@@ -116,7 +160,7 @@ const PropertyDetails = () => {
                 </ul>
               </div>
               <div className="mb-6 flex items-center">
-                <button className="bg-[#65bc7b] text-white px-4 py-2 rounded-full hover:opacity-90 transition-opacity duration-500 ease-in-out">
+                <button  onClick={handleAddToWishList} className="bg-[#65bc7b] text-white px-4 py-2 rounded-full hover:opacity-90 transition-opacity duration-500 ease-in-out">
                   Add to Wishlist <i className="fas fa-shopping-cart"></i>
                 </button>
                 <button 

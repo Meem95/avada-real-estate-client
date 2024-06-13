@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet";
 import r2 from "../assets/images/reg.json";
 import Lottie from "lottie-react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 const Register = () => {
   const axiosPublic = useAxiosPublic();
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -30,7 +31,7 @@ const Register = () => {
                           photoURL: data.photoURL,
                           createdAt: createdAt
                       }
-                      axiosPublic.post('/users', userInfo)
+                      axios.post('/users', userInfo)
                           .then(res => {
                               if (res.data.insertedId) {
                                   console.log('user added to the database')
