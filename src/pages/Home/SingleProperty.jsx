@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { IoLocationSharp } from "react-icons/io5";
 
 const SingleProperty = ({item}) => {
-  const { title, location, second_price, first_price, _id ,name,email,status} = item;
+  const { title, location, second_price, first_price, _id ,image ,name,email,status} = item;
   return (
     <div>
       <div className="bg-white relative shadow-md rounded-md overflow-hidden m-6">
@@ -11,7 +11,7 @@ const SingleProperty = ({item}) => {
         </div>
         <div className="relative">
           <img
-            src="https://cdn.pixabay.com/photo/2014/07/10/17/18/large-home-389271__340.jpg"
+            src={image}
             alt="Home In Merrick Way"
             className="w-full object-cover"
           />
@@ -41,7 +41,7 @@ const SingleProperty = ({item}) => {
           </div>
           <div className="mt-4">
             <span className="block text-xs font-bold">Price</span>
-            <span className="text-[#65bc7b] text-lg font-bold">{first_price } - {second_price}</span>
+            <span className="text-[#65bc7b] text-lg font-bold">${first_price } - ${second_price}</span>
           </div>
           <div className="flex justify-center">
             

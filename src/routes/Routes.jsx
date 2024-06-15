@@ -31,6 +31,8 @@ import BoughtProperty from "../pages/Dashboard/BoughtProperty";
 import ManageReviewByUser from "../pages/Dashboard/ManageReviewByUser";
 import AdminRoute from "./AdminRoute";
 import UserProfile from "../pages/Dashboard/UserProfile";
+import AgentProfile from "../pages/Dashboard/AgentProfile";
+import ManageAdevertiseProperty from "../pages/Dashboard/ManageAdevertiseProperty";
 
 
 const router = createBrowserRouter([
@@ -53,8 +55,7 @@ const router = createBrowserRouter([
             
             {
                 path: '/all-property',
-               // element:<PrivateRoute> <AddFood></AddFood></PrivateRoute>
-                element: <AllProperty></AllProperty>
+                element: <PrivateRoute><AllProperty></AllProperty></PrivateRoute>
             },
             {
                 path: '/property-details/:id',
@@ -106,15 +107,23 @@ const router = createBrowserRouter([
           },
           {
             path: 'manage-user',
-            element: <ManageUser></ManageUser>
+            element: <AdminRoute> <ManageUser></ManageUser></AdminRoute>
           },
           {
             path: 'manage-property',
-            element: <ManageProperty></ManageProperty>
+            element: <AdminRoute><ManageProperty></ManageProperty></AdminRoute> ,
           },
           {
             path: 'manage-review-by-admin',
-            element: <ReviewByAdmin></ReviewByAdmin>,
+            element: <AdminRoute><ReviewByAdmin></ReviewByAdmin></AdminRoute> ,
+          },
+          {
+            path: 'manage-advertise-by-admin',
+            element: <AdminRoute><ManageAdevertiseProperty></ManageAdevertiseProperty></AdminRoute> ,
+          },
+          {
+            path: 'agent-profile',
+            element:<AgentProfile></AgentProfile>
           },
           {
             path: 'agent/add-property',
@@ -149,8 +158,9 @@ const router = createBrowserRouter([
             element:<UserProfile></UserProfile>
           },
           {
-            path: 'offer-property',
-            element: <OfferedProperty></OfferedProperty>
+            path: 'offer-property/:id',
+            element: <OfferedProperty></OfferedProperty>,
+            loader:({params})=>fetch(`http://localhost:5000/offer-property/${params.id}`)
           },
           {
             path: 'bought-property',

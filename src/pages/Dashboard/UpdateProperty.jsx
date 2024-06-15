@@ -1,54 +1,86 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLoaderData } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
-const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_kEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const UpdateProperty = () => {
-  const { title, location, second_price, first_price, _id ,name,email} = useLoaderData();
-  const { register, handleSubmit } = useForm();
+  const {
+    title,
+    location,
+    second_price,
+    image,
+    first_price,
+    _id,
+    agentName,
+    agentEmail,
+    agentImage,
+    description,
+  } = useLoaderData();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  console.log(image);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [response, setResponse] = useState(null);
+  console.log(selectedImage)
+  const handleFileChange = (e) => {
+    setSelectedImage(e.target.files[0]);
+  };
 
-  // const axiosPublic = useAxiosPublic();
+  const axiosPublic = useAxiosPublic();
   // console.log(axiosPublic)
   const axiosSecure = useAxiosSecure();
 
   const onSubmit = async (data) => {
     console.log(data);
-    // const imageFile = { image: data.image[0] };
-    // const res = await useAxiosPublic.post(image_hosting_api, imageFile, {
-    //   headers: {
-    //     "content-type": "multipart/form-data",
-    //   },
-    // });
-   
- 
-      const propertyItem = {
-        title: data.title,
-        location: data.location,
-        name: name,
-        email: email,
-        first_price: parseFloat(data.first_price),
-        second_price: parseFloat(data.second_price),
-      };
-       console.log(propertyItem);
-      const propertyRes = await useAxiosPublic.put(`/property/${_id}`, propertyItem);
-      console.log(propertyRes.data);
-      if (propertyRes.data.modifiedCount > 0) {
-        // show success popup
-        // reset();
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: `${data.title} is updated to the menu.`,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-    
+    // image upload to imgbb and then get an url
+    const imageFile = { image: data.image[0] };
+    // console.log(imageFile.image);
+    if(imageFile.image !== undefined){
+      const res = await axiosPublic.post(image_hosting_api, imageFile, {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+
+      },
+     
+    );
+    setResponse(res)
+    }
+    console.log(response)
+    const propertyItem = {
+      title: data.title,
+      location: data.location,
+      description: data.description,
+      image: response?.data?.display_url || image,
+      agentEmail: agentEmail,
+      agentName: agentName,
+      agentImage: agentImage,
+      first_price: parseFloat(data.first_price),
+      second_price: parseFloat(data.second_price),
+    };
+    console.log(propertyItem);
+    const propertyRes = await axiosSecure.put(`/property/${_id}`, propertyItem);
+    console.log(propertyRes.data);
+    if (propertyRes.data.modifiedCount > 0) {
+      // show success popup
+      // reset();
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `${data.title} is updated to the menu.`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+
     // console.log("with image url", res.data);
   };
   return (
@@ -115,23 +147,24 @@ const UpdateProperty = () => {
                 className="w-full p-2 border rounded-md focus:outline-[#65bc7b]"
                 type="text"
                 placeholder="Name"
-                id="name"
-                name="name"
-                defaultValue={name}
-                {...register("name")}
+                id="agentName"
+                name="agentName"
+                defaultValue={agentName}
+                {...register("agentName")}
                 disabled
               />
             </div>
 
             <div className="flex-1">
-              {/* <label className="block mb-2 dark:text-white" htmlFor="image">
+              <label className="block mb-2 dark:text-white" htmlFor="image">
                 Property Image
               </label>
               <input
-                {...register("image", { required: true })}
+                {...register("image")}
+                onChange={handleFileChange}
                 type="file"
                 className="file-input w-full max-w-xs"
-              /> */}
+              />
 
               <label className="block mb-2 mt-4 dark:text-white" htmlFor="type">
                 First Price
@@ -156,12 +189,24 @@ const UpdateProperty = () => {
                 className="w-full p-2 border rounded-md focus:outline-[#65bc7b]"
                 type="text"
                 placeholder="Enter Second Price"
-                id="email"
-                name="email"
-                defaultValue={email}
-                {...register("email")}
+                id="agentEmail"
+                name="agentEmail"
+                defaultValue={agentEmail}
+                {...register("agentEmail")}
                 disabled
               />
+              <label className="label">
+                <span className="label-text">Description*</span>
+              </label>
+              <textarea
+                placeholder="Enter Property Description"
+                defaultValue={description}
+                {...register("description", { required: true })}
+                className="textarea textarea-bordered w-full h-34"
+              ></textarea>
+              {errors.description && (
+                <p className="text-red-600">Description is required</p>
+              )}
             </div>
           </div>
           <input
@@ -169,7 +214,6 @@ const UpdateProperty = () => {
             type="submit"
             value="Update Property"
           />
-
         </form>
       </div>
     </div>

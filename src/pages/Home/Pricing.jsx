@@ -4,7 +4,7 @@ const Pricing = () => {
 <section className="py-6 b text-black">
 	<div className="container mx-auto p-4 sm:p-10">
 		<div className="mb-16 space-y-4 text-center">
-			<h1 className="text-4xl font-semibold leading-tight">Pricing</h1>
+			<h1 className="text-4xl font-semibold leading-tight">Our <span className="text-[#65bc7b]">Pricing</span></h1>
 			<p className="px-4 sm:px-8 lg:px-24">Discover our subscription plans to access exclusive property listings, expert advice, and premium features tailored to your needs.</p>
 			
 		</div>

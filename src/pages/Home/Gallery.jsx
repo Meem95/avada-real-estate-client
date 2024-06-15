@@ -9,7 +9,7 @@ const Gallery = () => {
   return (
     <div className="mb-6">
       <div className=" space-y-4 text-center">
-        <h1 className="text-4xl font-semibold leading-tight">Our Gallery</h1>
+        <h1 className="text-4xl font-semibold leading-tight">Our <span className="text-[#65bc7b]"> Gallery</span></h1>
         <p className="px-4 sm:px-8 lg:px-24">
           Explore our exclusive collection of luxury homes, each offering
           stunning architecture, modern amenities, and unique design features.

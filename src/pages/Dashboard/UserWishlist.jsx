@@ -18,7 +18,7 @@ const UserWishlist = () => {
   } = useQuery({
     queryKey: ["wishlist"],
     queryFn: async () => {
-      const res = await axios.get(
+      const res = await axiosSecure.get(
         `http://localhost:5000/user-wishlists/${user?.email}`
       );
       return res.data;
@@ -67,7 +67,7 @@ const UserWishlist = () => {
             </div>
             <div className="relative">
               <img
-                src="https://cdn.pixabay.com/photo/2014/07/10/17/18/large-home-389271__340.jpg"
+                src={item.image}
                 alt="Home In Merrick Way"
                 className="w-full object-cover"
               />
@@ -115,11 +115,11 @@ const UserWishlist = () => {
               <div className="mt-4">
                 <span className="block text-xs font-bold">For Sale</span>
                 <span className="text-[#65bc7b] text-lg font-bold">
-                  $540,000
+                  ${item.first_price} - ${item.second_price}
                 </span>
               </div>
               <div className="flex justify-between ">
-                <Link to="/dashboard/offer-property">
+                <Link to={`/dashboard/offer-property/${item._id}`}>
                   <button className="relative overflow-hidden  border border-[#65bc7b] text-[#65bc7b]  text-sm  py-3 px-3 font-bold uppercase tracking-wider transition-all duration-150 ease-in-out focus:outline-none group mt-4">
                     <span className="absolute inset-0 bg-[#65bc7b] transform scale-x-0 origin-left transition-transform duration-150 ease-in-out group-hover:scale-x-100"></span>
                     <span className="relative z-10 transition-colors duration-150 ease-in-out group-hover:text-white">

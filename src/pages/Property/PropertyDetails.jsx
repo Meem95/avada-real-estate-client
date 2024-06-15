@@ -9,7 +9,7 @@ import { FaStarHalfStroke } from "react-icons/fa6";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 const PropertyDetails = () => {
-  const { title, location,image, second_price, first_price, _id ,name,email} = useLoaderData();
+  const { title, location,image, second_price, first_price, _id ,agentName,agentEmail,description} = useLoaderData();
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -42,8 +42,8 @@ const handleAddToWishList = async () => {
           image,
           first_price,
           second_price,
-          agentEmail:email,
-          agentName:name,
+          agentEmail,
+          agentName,
           
         };
         const res = await axiosSecure.post('/wishlists', wishlistItem);
@@ -83,8 +83,9 @@ const handleAddToWishList = async () => {
     const email = user.email;
     const name = user.displayName;
     const userImage = user.photoURL;
+     title;
 
-    const newReview = { review, email ,name,userImage}
+    const newReview = { review, email ,name,userImage,title}
     fetch('http://localhost:5000/reviews', {
       method: 'POST',
       headers: {
@@ -117,7 +118,7 @@ const handleAddToWishList = async () => {
             <div className="flex flex-col justify-center">
               <div className="overflow-hidden">
                 <div className="img-showcase flex w-full transition-all duration-500 ease-in-out h-full">
-                 {/* <IoIosCheckmarkCircle /> */}
+                 <img src={image} alt="" />
                 </div>
               </div>
             </div>
@@ -138,24 +139,24 @@ const handleAddToWishList = async () => {
                
               </div>
               <div className="mb-4 text-lg font-semibold">
-                <p> Price: <span className="text-[#65bc7b]">{first_price} - {second_price}</span></p>
+                <p> Price: <span className="text-[#65bc7b]">${first_price} - ${second_price}</span></p>
               </div>
               <div className="mb-4">
                 <h2 className="text-2xl text-gray-800 capitalize mb-2">about this Property: </h2>
-                <p className="text-sm text-gray-600 mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eveniet veniam tempora fuga tenetur placeat sapiente architecto illum soluta consequuntur, aspernatur quidem at sequi ipsa!</p>
+                <p className="text-sm text-gray-600 mb-2">{description}</p>
           
                 <ul className="mt-4 space-y-2 text-sm text-gray-600">
                   <li className="flex items-center">
                     <img src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/checked.png" alt="check icon" className="w-4 h-4 mr-2" />
-                    Color: <span className="font-normal ml-1">Black</span>
+                    Location: <span className="font-normal ml-1">{location}</span>
                   </li>
                   <li className="flex items-center">
                     <img src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/checked.png" alt="check icon" className="w-4 h-4 mr-2" />
-                    Available: <span className="font-normal ml-1">in stock</span>
+                    Status: <span className="font-normal ml-1">Available for Rent</span>
                   </li>
                   <li className="flex items-center">
                     <img src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/checked.png" alt="check icon" className="w-4 h-4 mr-2" />
-                    Category: <span className="font-normal ml-1">Shoes</span>
+                    Type: <span className="font-normal ml-1">Apartment</span>
                   </li>
                 </ul>
               </div>

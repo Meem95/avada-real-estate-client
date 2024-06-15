@@ -13,7 +13,7 @@ import SingleProperty from "./SingleProperty";
 
 const FeaturedProperty = () => {
   const [property] = useProperty();
-  const popular = property.filter(item => item.status === 'verified');
+  const popular = property.filter(item => item.type === 'advertise');
   const truncateString = (str, numWords) => {
     const words = str.split(" ");
     if (words.length > numWords) {
@@ -26,7 +26,7 @@ const FeaturedProperty = () => {
   return (
     <motion.div whileHover={{ scale: 1.02 }}>
       <div className="mb-16 space-y-4 text-center">
-			<h1 className="text-4xl font-semibold leading-tight">Featured Property</h1>
+			<h1 className="text-4xl font-semibold leading-tight">Featured <span className="text-[#65bc7b]">Property</span></h1>
 			<p className="px-4 sm:px-8 lg:px-24">Discover unparalleled elegance and modern design in our featured property, offering breathtaking views and exceptional living spaces. </p>
 			
 		</div>

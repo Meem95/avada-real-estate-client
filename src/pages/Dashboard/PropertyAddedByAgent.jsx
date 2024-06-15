@@ -48,15 +48,11 @@ const PropertyAddedByAgent = () => {
             </div>
             <div className="relative">
               <img
-                src="https://cdn.pixabay.com/photo/2014/07/10/17/18/large-home-389271__340.jpg"
+                src={item.image}
                 alt="Home In Merrick Way"
                 className="w-full object-cover"
               />
-              <div className="absolute inset-0 bg-teal-700 bg-opacity-70 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-xs border border-white py-2 px-4 cursor-pointer">
-                  View Property
-                </span>
-              </div>
+              
               <div className="absolute bottom-4 right-4 text-black space-x-3">
                 <i className="fas fa-heart"></i>
                 <i className="fas fa-exchange-alt"></i>
@@ -65,14 +61,14 @@ const PropertyAddedByAgent = () => {
             <div className="p-4">
               <h3 className="text-lg font-bold"> {item.title}</h3>
 
-              <div className="flex space-x-4">
+              <div className="flex space-x-4 ">
                 <div className="flex space-x-4">
                   <div>
                     <span className="block text-xs font-bold">Location</span>
                     <div className="flex items-center mt-1">
                       <IoLocationSharp />
-                      <span className="ml-2 text-sm ">
-                        121 arrielle dr, newark, DE
+                      <span className="ml-2 text-sm my-2">
+                      {item.location}
                       </span>
                     </div>
                   </div>
@@ -83,7 +79,7 @@ const PropertyAddedByAgent = () => {
                   <span className="block text-xs font-bold">Agent Name</span>
                   <div className="flex items-center mt-1">
                     <i className="fas fa-th-large text-gray-500"></i>
-                    <span className="ml-2 text-xs font-bold">{item.name}</span>
+                    <span className="ml-2 text-xs font-bold">{item.agentName}</span>
                   </div>
                 </div>
 
@@ -92,7 +88,7 @@ const PropertyAddedByAgent = () => {
                   <div className="flex items-center mt-1">
                     <i className="fas fa-vector-square text-gray-500"></i>
                     <span className="ml-2 text-xs font-bold">
-                      <span className="text-gray-500 ml-1">{item.email}</span>
+                      <span className="text-gray-500 ml-1">{item.agentEmail}</span>
                     </span>
                   </div>
                 </div>

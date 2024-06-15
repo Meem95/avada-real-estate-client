@@ -16,7 +16,6 @@ const Home = () => {
       <div>
         <Slider />
       </div>
-
       <div className="">
         <FeaturedProperty />
       </div>

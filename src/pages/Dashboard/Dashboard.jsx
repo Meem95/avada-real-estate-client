@@ -116,13 +116,27 @@ const Dashboard = () => {
                       </p>
                     </NavLink>
                   </li>
+                  <li className="mb-3 border-b-3">
+                    <NavLink
+                      to={"/dashboard/manage-advertise-by-admin"}
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-special-button-hover border-special-button-hover"
+                          : "text-center border-b-3 border-primary font-normal gap-6 text-[18px]"
+                      }
+                    >
+                      <p className="text-center flex md:flex-row flex-col gap-2 justify-center items-center">
+                      <MdRateReview className="md:text-3xl"/>  Advertise Property
+                      </p>
+                    </NavLink>
+                  </li>
                 </ul>
                ) : isSeller ? (
                 <>
                   <ul className="md:p-4 p-1 md:flex md:flex-col md:justify-start md:items-start">
                     <li className="mb-3 border-b-3">
                       <NavLink
-                        to={"/dashboard/profile"}
+                        to={"/dashboard/agent-profile"}
                         end
                         className={({ isActive }) =>
                           isActive
@@ -165,20 +179,6 @@ const Dashboard = () => {
                       </NavLink>
                     </li>
                     <li className="mb-3 border-b-3">
-                      <NavLink
-                        to={"/dashboard/sold-property"}
-                        className={({ isActive }) =>
-                          isActive
-                            ? "text-special-button-hover border-special-button-hover"
-                            : "text-center border-b-3 border-primary font-normal gap-6 text-[18px]"
-                        }
-                      >
-                        <p className="flex text-center md:flex-row flex-col gap-2 justify-center items-center">
-                          <CgBriefcase className="md:text-3xl"/> Sold Properties
-                        </p>
-                      </NavLink>
-                    </li>
-                        <li className="mb-3 border-b-3">
                         <NavLink
                             to={"/dashboard/requested-property"}
                             className={({ isActive }) =>
@@ -192,6 +192,21 @@ const Dashboard = () => {
                             </p>
                         </NavLink>
                         </li>
+                    <li className="mb-3 border-b-3">
+                      <NavLink
+                        to={"/dashboard/sold-property"}
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-special-button-hover border-special-button-hover"
+                            : "text-center border-b-3 border-primary font-normal gap-6 text-[18px]"
+                        }
+                      >
+                        <p className="flex text-center md:flex-row flex-col gap-2 justify-center items-center">
+                          <CgBriefcase className="md:text-3xl"/> Sold Properties
+                        </p>
+                      </NavLink>
+                    </li>
+                       
                   </ul>
                 </>
               ) : ( 

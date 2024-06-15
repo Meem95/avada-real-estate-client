@@ -8,13 +8,15 @@ import { Helmet } from "react-helmet";
 import axios from 'axios';
 import r2 from "../assets/images/reg.json";
 import Lottie from "lottie-react";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const Login = () => {
   const auth = getAuth(app);
+  const axiosPublic = useAxiosPublic(); 
   const [user, setUser] = useState(null);
-  console.log(user)
   const { signIn } = useContext(AuthContext);
   const location = useLocation();
+  const from=location.state?.from?.pathname || "/";
   const navigate = useNavigate();
   console.log('location i n the login page', location)
   const provider = new GoogleAuthProvider();
@@ -31,7 +33,7 @@ const Login = () => {
         console.log(loggedInUser);
         setUser(loggedInUser);
         const user = { email ,displayName,photoURL,role,createdAt: createdAt};
-        axios.post('http://localhost:5000/users', user, { withCredentials: true })
+        axiosPublic.post('/users', user)
           .then(res => {
             console.log(res.data)
             if (res.data.success) {
@@ -44,7 +46,8 @@ const Login = () => {
           icon: 'success',
           confirmButtonText: 'Cool'
         })
-        navigate(location?.state ? location.state : '/');
+        // navigate(location?.state ? location.state : '/');
+        navigate(from,{replace:true})
       }).catch((error) => {
         console.log(error.message);
         Swal.fire({
@@ -55,8 +58,6 @@ const Login = () => {
         })
       });
   }
- 
-
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -71,7 +72,7 @@ const Login = () => {
         const loggedInUser = result.user;
         console.log(loggedInUser);
         const user = { email };
-        axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+        axiosPublic.post('/jwt', user)
           .then(res => {
             console.log(res.data)
             if (res.data.success) {
@@ -86,6 +87,7 @@ const Login = () => {
         })
         // navigate after login
         // navigate(location?.state ? location.state : '/');
+        navigate(from,{replace:true})
 
       })
       .catch(error => {

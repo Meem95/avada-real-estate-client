@@ -1,9 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
-
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import app from "../firebase/firebase.config";
-
 
 export const AuthContext = createContext(null);
 
@@ -13,11 +11,11 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
-    // const axiosPublic = useAxiosPublic();
+    const axiosPublic = useAxiosPublic();
 
     const createUser = (email, password) => {
         setLoading(true);
-        return createUserWithEmailAndPassword(auth, email, password)
+        return createUserWithEmailAndPassword(auth, email, password);
     }
 
     const signIn = (email, password) => {
@@ -42,30 +40,30 @@ const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
             setUser(currentUser);
             if (currentUser) {
                 // get token and store client
                 const userInfo = { email: currentUser.email };
-                useAxiosPublic.post('/jwt', userInfo)
-                    .then(res => {
-                        if (res.data.token) {
-                            localStorage.setItem('access-token', res.data.token);
-                            setLoading(false);
-                        }
-                    })
-            }
-            else {
-                // TODO: remove token (if token stored in the client side: Local storage, caching, in memory)
+                try {
+                    const res = await axiosPublic.post('/jwt', userInfo);
+                    if (res.data.token) {
+                        localStorage.setItem('access-token', res.data.token);
+                    }
+                } catch (error) {
+                    console.error('Error fetching token:', error);
+                } finally {
+                    setLoading(false);
+                }
+            } else {
+                // Remove token if not logged in
                 localStorage.removeItem('access-token');
                 setLoading(false);
             }
-            
         });
-        return () => {
-            return unsubscribe();
-        }
-    }, [useAxiosPublic])
+
+        return () => unsubscribe();
+    }, [axiosPublic]);
 
     const authInfo = {
         user,
@@ -74,8 +72,8 @@ const AuthProvider = ({ children }) => {
         signIn,
         googleSignIn,
         logOut,
-        updateUserProfile
-    }
+        updateUserProfile,
+    };
 
     return (
         <AuthContext.Provider value={authInfo}>
