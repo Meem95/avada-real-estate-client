@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { IoLocationSharp } from "react-icons/io5";
 
-const SingleProperty = ({item}) => {
+const AllPropertySinglePage = ({item}) => {
   const { title, location, second_price, first_price, _id ,image ,name,email,status} = item;
   return (
     <div>
@@ -15,15 +15,12 @@ const SingleProperty = ({item}) => {
             alt="Home In Merrick Way"
             className="w-full object-cover"
           />
-          
-          <Link to={`/property-details/${_id}`}>
-          <div className="absolute inset-0 bg-teal-700 bg-opacity-70 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <Link to={`/property-details/${_id}`}><div className="absolute inset-0 bg-teal-700 bg-opacity-70 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
             <span className="text-white text-xs border border-white py-2 px-4 cursor-pointer">
               View Property
             </span>
-          </div>
-          </Link>
-         
+          </div></Link>
+          
           <div className="absolute bottom-4 right-4 text-black space-x-3">
             <i className="fas fa-heart"></i>
             <i className="fas fa-exchange-alt"></i>
@@ -34,17 +31,36 @@ const SingleProperty = ({item}) => {
           <div className="flex space-x-4">
            
             <div>
-              <span className="block text-xs font-bold">Location</span>
+              <span className="block text-sm font-bold">Location</span>
               <div className="flex items-center mt-1">
               <IoLocationSharp />
-                <span className="ml-2 text-sm font-bold">
+                <span className="ml-2 text-xs font-bold">
                   {location}
                 </span>
               </div>
             </div>
           </div>
+          <div className="flex space-x-10 my-3">
+                <div>
+                  <span className="block text-xs font-bold">Agent Name</span>
+                  <div className="flex items-center mt-1">
+                    <i className="fas fa-th-large text-black "></i>
+                    <span className="ml-2 text-xs text-black font-bold">{item.agentName}</span>
+                  </div>
+                </div>
+
+                <div>
+                  <span className="block text-xs font-bold">Agent Email</span>
+                  <div className="flex items-center mt-1">
+                    <i className="fas fa-vector-square text-black "></i>
+                    <span className="ml-2 text-xs font-bold">
+                      <span className="text-black ml-1">{item.agentEmail}</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
           <div className="mt-4">
-            <span className="block text-xs font-bold">Price</span>
+            <span className="block text-sm font-bold">Price</span>
             <span className="text-[#65bc7b] text-lg font-bold">${first_price } - ${second_price}</span>
           </div>
           <div className="flex justify-center">
@@ -64,4 +80,4 @@ const SingleProperty = ({item}) => {
   );
 };
 
-export default SingleProperty;
+export default AllPropertySinglePage;

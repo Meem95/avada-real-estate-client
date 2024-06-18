@@ -64,17 +64,17 @@ const PropertyAddedByAgent = () => {
               <div className="flex space-x-4 ">
                 <div className="flex space-x-4">
                   <div>
-                    <span className="block text-xs font-bold">Location</span>
+                    <span className="block text-md font-bold">Location</span>
                     <div className="flex items-center mt-1">
                       <IoLocationSharp />
-                      <span className="ml-2 text-sm my-2">
+                      <span className="ml-2 text-xs my-2">
                       {item.location}
                       </span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="flex space-x-8">
+              <div className="flex space-x-10">
                 <div>
                   <span className="block text-xs font-bold">Agent Name</span>
                   <div className="flex items-center mt-1">

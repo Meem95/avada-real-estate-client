@@ -1,8 +1,8 @@
 import { Link, useLoaderData } from "react-router-dom";
 import { useState } from "react";
 import { Helmet } from "react-helmet";
-import SingleProperty from "./Home/SingleProperty";
 import useProperty from "../hooks/useProperty";
+import AllPropertySinglePage from "./AllPropertySinglePage";
 
 const AllProperty = () => {
   const [property] = useProperty();
@@ -63,7 +63,7 @@ const AllProperty = () => {
           <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
             {
               sortedProperties.map(item => 
-                <SingleProperty key={item._id} item={item} />
+                <AllPropertySinglePage key={item._id} item={item} />
               )
             }
           </div>
