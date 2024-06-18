@@ -32,6 +32,7 @@ const OfferedProperty = () => {
       date: data.date,
       name: name,
       email: email,
+      image,
       first_price: parseFloat(data.first_price),
       second_price: parseFloat(data.second_price),
       offer_price: data.offer_price,
@@ -41,9 +42,9 @@ const OfferedProperty = () => {
     };
     console.log(sellsItem);
     const sellsRes = await axiosSecure.post('/sells', sellsItem);
-    console.log(sellsRes.data);
-    if (sellsRes.data.insertedId > 0
-     ) {
+    console.log(sellsRes);
+    if (sellsRes.data.insertedId ) {
+    
       Swal.fire({
         position: "top-end",
         icon: "success",

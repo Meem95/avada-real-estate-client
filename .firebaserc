@@ -1,9 +1,5 @@
 {
   "projects": {
-    "default": "h-food-396f7",
-    "\t": "h-food-396f7"
-  },
-  "targets": {},
-  "etags": {},
-  "dataconnectEmulatorConfig": {}
+    "default": "b9a12-real-estate"
+  }
 }

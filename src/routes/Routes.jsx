@@ -33,6 +33,9 @@ import AdminRoute from "./AdminRoute";
 import UserProfile from "../pages/Dashboard/UserProfile";
 import AgentProfile from "../pages/Dashboard/AgentProfile";
 import ManageAdevertiseProperty from "../pages/Dashboard/ManageAdevertiseProperty";
+import MeemCheckOut from "../pages/Dashboard/CheckOut/MeemCheckOut";
+
+
 
 
 const router = createBrowserRouter([
@@ -90,6 +93,8 @@ const router = createBrowserRouter([
                 path: '/register',
                 element: <Register></Register>
             },
+           
+           
           
         ]
     },
@@ -172,7 +177,11 @@ const router = createBrowserRouter([
             element: <ManageReviewByUser></ManageReviewByUser>,
          
           },
+          {
+            path: 'checkout',
+           element: <MeemCheckOut></MeemCheckOut> ,
          
+          },
         ]
       }
 
