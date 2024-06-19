@@ -106,10 +106,14 @@ const router = createBrowserRouter([
           // normal user routes
           //admin's routes
           {
-            path: 'profile',
-            element: 
-            <AdminRoute><Profile></Profile></AdminRoute>
+            index:true,
+            element:<Profile></Profile>,
           },
+          // {
+          //   path: 'profile',
+          //   element: 
+          //   <AdminRoute><Profile></Profile></AdminRoute>
+          // },
           {
             path: 'manage-user',
             element: <AdminRoute> <ManageUser></ManageUser></AdminRoute>
@@ -126,10 +130,10 @@ const router = createBrowserRouter([
             path: 'manage-advertise-by-admin',
             element: <AdminRoute><ManageAdevertiseProperty></ManageAdevertiseProperty></AdminRoute> ,
           },
-          {
-            path: 'agent-profile',
-            element:<AgentProfile></AgentProfile>
-          },
+          // {
+          //   path: 'agent-profile',
+          //   element:<AgentProfile></AgentProfile>
+          // },
           {
             path: 'agent/add-property',
             element: <AddProperty></AddProperty>
@@ -178,8 +182,9 @@ const router = createBrowserRouter([
          
           },
           {
-            path: 'checkout',
+            path: 'checkout-test/:id',
            element: <MeemCheckOut></MeemCheckOut> ,
+           loader:({params})=>fetch(`http://localhost:5000/user-boughtProperty-payment/${params.id}`)
          
           },
         ]

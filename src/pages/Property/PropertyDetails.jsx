@@ -52,6 +52,7 @@ console.log(reviewsProperty)
             title,
             location,
             image,
+            offer_price: "",
             first_price,
             second_price,
             agentEmail,

@@ -30,7 +30,7 @@ const BoughtProperty = () => {
       {boughtProperty.map((item) => (
         <div className="bg-white relative shadow-md rounded-md overflow-hidden m-6">
           <div className="absolute top-3 left-0 bg-[#65bc7b] text-white text-xs font-bold px-3 py-1 transform -translate-y-1/2 z-10">
-            Featured
+          {item.status}
           </div>
           <div className="relative">
             <img
@@ -88,14 +88,20 @@ const BoughtProperty = () => {
               <span className="text-[#65bc7b] text-lg font-bold">{item.offer_price}</span>
             </div>
             <div className="flex justify-center ">
-              <Link to="/dashboard/checkout">
-                <button className="relative overflow-hidden  border border-[#65bc7b] text-[#65bc7b]  text-md  py-3 btn-wide px-3 font-bold uppercase tracking-wider transition-all duration-150 ease-in-out focus:outline-none group mt-4">
-                  <span className="absolute inset-0 bg-[#65bc7b] transform scale-x-0 origin-left transition-transform duration-150 ease-in-out group-hover:scale-x-100"></span>
-                  <span className="relative z-10 transition-colors duration-150 ease-in-out group-hover:text-white">
-                    Pay
-                  </span>
-                </button>
-              </Link>
+              
+   {
+    item?.status !=="bought"?         <Link to={`/dashboard/checkout-test/${item._id}`}>
+    <button
+      className="relative overflow-hidden border border-[#65bc7b] text-[#65bc7b] text-md py-3 btn-wide px-3 font-bold uppercase tracking-wider transition-all duration-150 ease-in-out focus:outline-none group mt-4"
+      disabled={item.status === "pending"}
+    >
+      <span className="absolute inset-0 bg-[#65bc7b] transform scale-x-0 origin-left transition-transform duration-150 ease-in-out group-hover:scale-x-100"></span>
+      <span className="relative z-10 transition-colors duration-150 ease-in-out group-hover:text-white">
+        Pay
+      </span>
+    </button>
+    </Link>:<div className="flex justify-center items-center bg-[#65bc7b] p-2 text-white rounded-lg mt-2"><p>{item?.transctionId}</p></div>
+   }
             </div>
           </div>
         </div>

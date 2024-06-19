@@ -2,17 +2,15 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import useAxiosPublic from '../../hooks/useAxiosPublic';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const OfferedProperty = () => {
-  const { title, location, image, second_price, first_price, _id, name, email, agentName, agentEmail,propertyId } = useLoaderData();
+  const { title, location, image, second_price, first_price, _id, name, email, agentName, agentEmail, propertyId, offer_price } = useLoaderData();
   console.log(name, email);
   const axiosSecure = useAxiosSecure();
 
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
-    //console.log(data.offer_price);
     const offerPrice = parseInt(data.offer_price);
 
     if (offerPrice < data.first_price || offerPrice > data.second_price) {
@@ -35,22 +33,39 @@ const OfferedProperty = () => {
       image,
       first_price: parseFloat(data.first_price),
       second_price: parseFloat(data.second_price),
-      offer_price: data.offer_price,
+      offer_price: parseFloat(data.offer_price),
       agentEmail,
       agentName,
       status: "pending"
     };
     console.log(sellsItem);
-    const sellsRes = await axiosSecure.post('/sells', sellsItem);
-    console.log(sellsRes);
-    if (sellsRes.data.insertedId ) {
-    
+
+    try {
+      const sellsRes = await axiosSecure.post('/sells', sellsItem);
+      console.log(sellsRes);
+      if (sellsRes.data.insertedId) {
+        // Update the wishlist offer_price
+        const updateRes = await axiosSecure.patch(`/get-offer-price/${_id}`, { offer_price: data.offer_price });
+        console.log(updateRes);
+
+        if (updateRes.data.modifiedCount > 0) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `You offer for ${title} is successful.`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        } else {
+          throw new Error('Failed to update wishlist offer price.');
+        }
+      }
+    } catch (error) {
       Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: `You offer for ${title} is successful.`,
-        showConfirmButton: false,
-        timer: 1500,
+        icon: 'error',
+        title: 'Error',
+        text: error.message,
+        confirmButtonText: 'Ok'
       });
     }
   };
@@ -150,7 +165,7 @@ const OfferedProperty = () => {
                 type="number"
                 placeholder="Enter Offered Price"
                 id="offer_price"
-                {...register("offer_price")}
+                {...register("offer_price", { required: true })}
                 required
               />
 

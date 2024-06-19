@@ -60,7 +60,7 @@ const Dashboard = () => {
                 <ul className="md:p-4 p-1 md:flex md:flex-col md:justify-start md:items-start">
                   <li className="mb-3 border-b-3">
                     <NavLink
-                      to={"/dashboard/profile"}
+                      to={"/dashboard"}
                       end
                       className={({ isActive }) =>
                         isActive
@@ -136,7 +136,7 @@ const Dashboard = () => {
                   <ul className="md:p-4 p-1 md:flex md:flex-col md:justify-start md:items-start">
                     <li className="mb-3 border-b-3">
                       <NavLink
-                        to={"/dashboard/agent-profile"}
+                        to={"/dashboard"}
                         end
                         className={({ isActive }) =>
                           isActive
@@ -214,7 +214,7 @@ const Dashboard = () => {
                   <ul className="md:p-4 p-1 md:flex md:flex-col md:justify-start md:items-start">
                     <li className="mb-3 border-b-3">
                       <NavLink
-                        to={"/dashboard/user-profile"}
+                        to={"/dashboard"}
                         end
                         className={({ isActive }) =>
                           isActive
