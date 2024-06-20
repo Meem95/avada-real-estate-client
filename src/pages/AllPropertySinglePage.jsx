@@ -13,7 +13,7 @@ const AllPropertySinglePage = ({item}) => {
           <img
             src={image}
             alt="Home In Merrick Way"
-            className="w-full object-cover"
+            className="w-full object-cover lg:h-[350px] md:h-[350px] "
           />
             <Link to={`/property-details/${_id}`}><div className="absolute inset-0 bg-teal-700 bg-opacity-70 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
             <span className="text-white text-xs border border-white py-2 px-4 cursor-pointer">

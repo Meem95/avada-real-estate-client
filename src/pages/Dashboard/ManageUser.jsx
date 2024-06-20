@@ -134,7 +134,11 @@ const ManageUser = () => {
                 <td>
                   {user.role === "admin" ? (
                     "Admin"
-                  ) : (
+                  ) : 
+                  user.role === "fraud"?(
+                    "Fraud" 
+                  ):
+                  (
                     <button
                       onClick={() => handleMakeAdmin(user)}
                       className="btn btn-ghost btn-sm bg-blue-500"
@@ -148,7 +152,9 @@ const ManageUser = () => {
                     "Agent"
                   ) : user.role === "admin" ? (
                     "Admin"
-                  ) : (
+                  ) : user.role === "fraud"?(
+                    "Fraud" 
+                  ):(
                     <button
                       onClick={() => handleMakeAgent(user)}
                       className="btn btn-ghost btn-sm bg-green-500"

@@ -18,8 +18,6 @@ const RequestedProperty = () => {
     },
   });
 
-  // Local state to keep track of accepted or rejected properties
-  const [handledRequests, setHandledRequests] = useState({});
 
   const handleAccept = async (id) => {
     try {
@@ -32,7 +30,7 @@ const RequestedProperty = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        setHandledRequests((prev) => ({ ...prev, [id]: 'accepted' }));
+       
         refetch();
       }
     } catch (error) {
@@ -51,7 +49,7 @@ const RequestedProperty = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        setHandledRequests((prev) => ({ ...prev, [id]: 'rejected' }));
+        
         refetch();
       }
     } catch (error) {
@@ -74,14 +72,14 @@ const RequestedProperty = () => {
               <th>Buyer Name</th>
               <th>Buyer Email</th>
               <th>Offered Price</th>
-              <th>Accept/Reject</th>
-              
+              <th>Accept</th>
+              <th>Reject</th>
             </tr>
           </thead>
           <tbody>
-            {sells.map((item,index) => (
-              <tr >
-               <td>{index + 1}</td>
+            {sells.map((item, index) => (
+              <tr key={item._id}>
+                <td>{index + 1}</td>
                 <td>
                   <div className="flex items-center gap-3">
                     <div>
@@ -94,26 +92,37 @@ const RequestedProperty = () => {
                 <td>{item.email}</td>
                 <td>{item.offer_price}</td>
                 <td>
-                {handledRequests[item._id] ? (
-                    <span className={`font-semibold ${handledRequests[item._id] === 'accepted' ? 'text-green-500' : 'text-red-500'}`}>
-                      {handledRequests[item._id] === 'accepted' ? 'Accepted' : 'Rejected'}
-                    </span>
+                 
+                {item.status === "accepted" ? (
+                    "Accept"
+                  ) : item.status === "rejected" ? (
+                    "Reject"
                   ) : (
-                    <>
-                      <button
-                        className="btn btn-ghost btn-sm bg-green-500 mr-2"
-                        onClick={() => handleAccept(item._id)}
-                      >
-                        Accept
-                      </button>
-                      <button
-                        className="btn btn-ghost btn-sm bg-red-500"
-                        onClick={() => handleReject(item._id)}
-                      >
-                        Reject
-                      </button>
-                    </>
+                    <button
+                    className="btn btn-ghost btn-sm bg-green-500 mr-2"
+                    onClick={() => handleAccept(item._id)}
+                  >
+                    Accept
+                  </button>
                   )}
+                     
+                      
+                 
+                 
+                </td>
+                <td>
+                {item.status === "rejected" ? (
+                    "Reject"
+                  ) : item.status === "accepted" ? (
+                    "Accept"
+                  ) : (
+                    <button
+                    className="btn btn-ghost btn-sm bg-red-500"
+                    onClick={() => handleReject(item._id)}
+                  >
+                    Reject
+                  </button>
+                  )} 
                 </td>
               </tr>
             ))}

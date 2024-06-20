@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const Profile = () => {
   const { user } = useAuth();
-  console.log("admin info :",user)
+ // console.log("admin info :",user)
   const axiosSecure = useAxiosSecure();
   const { data: users = [], refetch } = useQuery({
     queryKey: ['users'],
@@ -15,7 +15,7 @@ const Profile = () => {
     }
    
 })
-console.log(users);
+//console.log(users);
   return (
     <div>
      

@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import useProperty from "../../hooks/useProperty";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { IoLocationSharp } from "react-icons/io5";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../providers/AuthProvider";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const PropertyAddedByAgent = () => {
-  const [property, , refetch] = useProperty();
+  const { user } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
+  const { data: agentProperty = [], isPending: loading, refetch } = useQuery({
+    queryKey: ['agentProperty', user?.email],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/get-agent-property/${user?.email}`);
+      return res.data;
+    },
+  });
+  console.log('agentProperty',agentProperty)
+  //const [property, , refetch] = useProperty();
   const axiosSecure = useAxiosSecure();
   const handleDeleteItem = (item) => {
     Swal.fire({
@@ -41,7 +54,7 @@ const PropertyAddedByAgent = () => {
         <h1>Property List</h1>
       </div>
       <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
-        {property.map((item, index) => (
+        {agentProperty.map((item, index) => (
           <div className="bg-white relative shadow-md rounded-md overflow-hidden m-6">
             <div className="absolute top-3 left-0 bg-[#65bc7b] text-white text-xs font-bold px-3 py-1 transform -translate-y-1/2 z-10">
               {item.status}

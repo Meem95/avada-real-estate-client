@@ -34,6 +34,7 @@ import UserProfile from "../pages/Dashboard/UserProfile";
 import AgentProfile from "../pages/Dashboard/AgentProfile";
 import ManageAdevertiseProperty from "../pages/Dashboard/ManageAdevertiseProperty";
 import MeemCheckOut from "../pages/Dashboard/CheckOut/MeemCheckOut";
+import AgentRoute from "./AgentRoute";
 
 
 
@@ -131,25 +132,25 @@ const router = createBrowserRouter([
           // },
           {
             path: 'agent/add-property',
-            element: <AddProperty></AddProperty>
+            element:<AgentRoute><AddProperty></AddProperty></AgentRoute> 
           },
          
           {
             path: 'agent/property-list',
-            element: <PropertyAddedByAgent></PropertyAddedByAgent>
+            element:<AgentRoute><PropertyAddedByAgent></PropertyAddedByAgent></AgentRoute> 
           },
           {
             path: 'update-property/:id',
-            element: <UpdateProperty></UpdateProperty>,
+            element:<AgentRoute><UpdateProperty></UpdateProperty></AgentRoute> ,
             loader: ({params}) => fetch(`https://b9a12-real-estate-server.vercel.app/property/${params.id}`)
           },
           {
             path: 'sold-property',
-            element: <SoldProperty></SoldProperty>
+            element:<AgentRoute><SoldProperty></SoldProperty></AgentRoute> 
           },
           {
             path: 'requested-property',
-            element: <RequestedProperty></RequestedProperty>
+            element:<AgentRoute><RequestedProperty></RequestedProperty></AgentRoute> 
           },
 
           /// All User Route

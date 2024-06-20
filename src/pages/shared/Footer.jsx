@@ -18,7 +18,7 @@ const Footer = () => {
           <footer className="footer p-10 bg-base-200 text-base-content">
           <aside>
           <img className="w-28" src={logo} />
-    <p>ACME Industries Ltd.<br/>Providing reliable tech since 1992</p>
+    <p>Avada Industries Ltd.<br/>Providing reliable property since 1992</p>
   </aside>  
   <nav>
     <h6 className="footer-title">Company</h6> 
