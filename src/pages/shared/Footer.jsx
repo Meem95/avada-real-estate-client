@@ -22,16 +22,11 @@ const Footer = () => {
   </aside>  
   <nav>
     <h6 className="footer-title">Company</h6> 
-    <a className="link link-hover">About us</a>
-    <a className="link link-hover">Contact</a>
-    <a className="link link-hover">Jobs</a>
-    <a className="link link-hover">Press kit</a>
+    <Link to='contact'><a className="link link-hover">Contact Us </a></Link>
   </nav> 
   <nav>
-    <h6 className="footer-title">Legal</h6> 
-    <a className="link link-hover">Terms of use</a>
-    <a className="link link-hover">Privacy policy</a>
-    <a className="link link-hover">Cookie policy</a>
+    <h6 className="footer-title">Quick Link</h6> 
+    <Link to='all-property'><a className="link link-hover">All Property </a></Link>
   </nav> 
   <form>
     <h6 className="footer-title">Newsletter</h6> 
@@ -41,7 +36,7 @@ const Footer = () => {
       </label> 
       <div className="join">
         <input type="text" placeholder="username@site.com" className="input input-bordered join-item" /> 
-        <button className="btn btn-primary join-item lg:w-20 w-16">Subscribe</button>
+        <button className="btn  bg-[#65bc7b] join-item lg:w-20 w-16 font-bold">Subscribe</button>
       </div>
     </fieldset>
   </form>

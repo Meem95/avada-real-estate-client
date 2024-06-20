@@ -3,6 +3,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { FaTrashAlt, FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
+import UseAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ManageUser = () => {
   const axiosSecure = useAxiosSecure();
@@ -44,9 +45,14 @@ const ManageUser = () => {
     });
   };
 
-  const handleMakeFraud = (user) => {
-    axiosSecure.patch(`/users/fraud/${user._id}`).then((res) => {
+  const handleMakeFraud = async (user) => {
+    try {
+      const role={
+        agentRole: "fraud"
+      }
+      const res = await axiosSecure.patch(`/users/fraud/${user._id}`);
       if (res.data.modifiedCount > 0) {
+        await axiosSecure.patch(`/agent-status/${user.email}`, role);
         refetch();
         Swal.fire({
           position: "top-end",
@@ -56,8 +62,11 @@ const ManageUser = () => {
           timer: 1500,
         });
       }
-    });
+    } catch (error) {
+      console.error("Error marking user as fraud:", error);
+    }
   };
+
 
   const handleDeleteUser = (user) => {
     Swal.fire({
@@ -122,10 +131,9 @@ const ManageUser = () => {
                   </div>
                 </td>
                 <td>{user.email}</td>
-               
                 <td>
-                {user.role === "admin" || user.role === "fraud" ? (
-                    user.role === "fraud" ? "Fraud" : "Admin"
+                  {user.role === "admin" ? (
+                    "Admin"
                   ) : (
                     <button
                       onClick={() => handleMakeAdmin(user)}
@@ -136,8 +144,10 @@ const ManageUser = () => {
                   )}
                 </td>
                 <td>
-                {user.role === "agent" || user.role === "fraud" ? (
-                    user.role === "fraud" ? "Fraud" : "Agent"
+                  {user.role === "agent" ? (
+                    "Agent"
+                  ) : user.role === "admin" ? (
+                    "Admin"
                   ) : (
                     <button
                       onClick={() => handleMakeAgent(user)}
@@ -150,6 +160,8 @@ const ManageUser = () => {
                 <td>
                   {user.role === "fraud" ? (
                     "Fraud"
+                  ) : user.role === "admin" ? (
+                    "Admin"
                   ) : (
                     <button
                       onClick={() => handleMakeFraud(user)}

@@ -1,5 +1,5 @@
 import { Link, useRouteError } from "react-router-dom";
-import notFound  from "../assets/images/e.png";
+import notFound  from "../assets/images/404.gif";
 
 const NotFoundPage = () => {
     const err = useRouteError()

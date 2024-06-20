@@ -9,7 +9,7 @@ const useProperty = () => {
     const {data: property = [], isPending: loading, refetch} = useQuery({
         queryKey: ['property'], 
         queryFn: async() =>{
-            const res = await axios.get('http://localhost:5000/property');
+            const res = await axiosPublic.get('/property');
             return res.data;
         }
     })

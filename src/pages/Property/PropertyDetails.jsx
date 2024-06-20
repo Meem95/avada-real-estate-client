@@ -11,7 +11,8 @@ import useAxiosPublic from '../../hooks/useAxiosPublic';
 import axios from 'axios';
 
 const PropertyDetails = () => {
-  const { title, location, image, second_price, first_price, _id, agentName, agentEmail, description } = useLoaderData();
+  const axiosPublic = useAxiosPublic();
+  const { title, location, image, second_price, first_price, _id, agentName, agentEmail, description,status } = useLoaderData();
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,7 +22,7 @@ const PropertyDetails = () => {
 const {data: reviewsProperty = [], isPending: loading, refetch} = useQuery({
   queryKey: ['reviewsProperty'], 
   queryFn: async() =>{
-      const res = await axios.get(`http://localhost:5000/reviews-property/${_id}`);
+      const res = await axiosPublic.get(`/reviews-property/${_id}`);
       return res.data;
   }
 })
@@ -57,6 +58,7 @@ console.log(reviewsProperty)
             second_price,
             agentEmail,
             agentName,
+            status,
           };
           const res = await axiosSecure.post('/wishlists', wishlistItem);
           if (res.data.insertedId) {
@@ -94,6 +96,7 @@ console.log(reviewsProperty)
   const handleSubmit = async (event) => {
     event.preventDefault();
     const reviewText = event.target.review.value;
+    const createdAt = new Date().toISOString();
     
     try {
       const newReview = {
@@ -102,7 +105,8 @@ console.log(reviewsProperty)
         name: user.displayName,
         userImage: user.photoURL,
         propertyId: _id,
-        title
+        title,
+        createdAt
       };
 
       const res = await axiosSecure.post('/reviews', newReview);

@@ -12,7 +12,7 @@ const MyLists = () => {
   const { user,logOut } =  useContext(AuthContext) || {};
   const [item, setItem] = useState([]);
   // console.log(user);
-  const url = `http://localhost:5000/myFood/${user?.email}`;
+  const url = `https://b9a12-real-estate-server.vercel.app/myFood/${user?.email}`;
   useEffect(() => {
     axios.get(url, {withCredentials: true})
     .then(res => {
@@ -20,7 +20,7 @@ const MyLists = () => {
     })
     .catch(error=>{
       console.log(error)
-      axios.post('http://localhost:5000/logout',{}, {withCredentials: true}).then(()=>{
+      axios.post('https://b9a12-real-estate-server.vercel.app/logout',{}, {withCredentials: true}).then(()=>{
     logOut()
     .then()
     .catch();

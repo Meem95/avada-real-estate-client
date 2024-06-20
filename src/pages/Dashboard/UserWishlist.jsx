@@ -17,7 +17,7 @@ const UserWishlist = () => {
     queryKey: ["wishlist"],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `http://localhost:5000/user-wishlists/${user?.email}`
+        `/user-wishlists/${user?.email}`
       );
       return res.data;
     },
@@ -60,7 +60,7 @@ const UserWishlist = () => {
         {wishlist.map((item) => (
           <div key={item._id} className="bg-white relative shadow-md rounded-md overflow-hidden m-6">
             <div className="absolute top-3 left-0 bg-[#65bc7b] text-white text-xs font-bold px-3 py-1 transform -translate-y-1/2 z-10">
-              Featured
+            {item.status}
             </div>
             <div className="relative">
               <img

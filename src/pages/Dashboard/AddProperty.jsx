@@ -41,6 +41,7 @@ const AddProperty = () => {
         agentEmail: user.email,
         agentName: user.displayName,
         agentImage: user.photoURL,
+        agentRole: "agent",
         addvertise: "no",
       };
       //

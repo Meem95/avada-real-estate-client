@@ -5,8 +5,10 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Review = () => {
+  const axiosPublic = useAxiosPublic();
   const {
     data: reviews = [],
     isPending: loading,
@@ -14,10 +16,14 @@ const Review = () => {
   } = useQuery({
     queryKey: ["get-reviews"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:5000/get-reviews");
+      const res = await axiosPublic.get("/get-reviews");
       return res.data;
     },
   });
+  const sortedReviews = reviews.sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  );
+
   return (
     <div className="max-w-7xl mx-auto my-16">
       <div className="text-center mb-10">
@@ -37,7 +43,7 @@ const Review = () => {
           className="mySwiper"
           loop={true}
         >
-          {reviews?.map((item) => (
+          {sortedReviews?.map((item) => (
             <SwiperSlide>
               <div className="p-6 sm:p-12  text-black">
                 <div className="flex flex-col space-y-4 md:space-y-0 md:space-x-6 md:flex-row">

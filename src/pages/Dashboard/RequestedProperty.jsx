@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -18,6 +18,9 @@ const RequestedProperty = () => {
     },
   });
 
+  // Local state to keep track of accepted or rejected properties
+  const [handledRequests, setHandledRequests] = useState({});
+
   const handleAccept = async (id) => {
     try {
       const res = await axiosSecure.patch(`/accept-property-request/${id}`, { email: user?.email });
@@ -29,6 +32,7 @@ const RequestedProperty = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        setHandledRequests((prev) => ({ ...prev, [id]: 'accepted' }));
         refetch();
       }
     } catch (error) {
@@ -47,6 +51,7 @@ const RequestedProperty = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        setHandledRequests((prev) => ({ ...prev, [id]: 'rejected' }));
         refetch();
       }
     } catch (error) {
@@ -63,18 +68,20 @@ const RequestedProperty = () => {
         <table className="table text-center">
           <thead>
             <tr>
+              <th>#</th>
               <th>Property Title</th>
               <th>Property Location</th>
               <th>Buyer Name</th>
               <th>Buyer Email</th>
-              <th>Offered Price </th>
-              <th>Accept </th>
-              <th>Reject </th>
+              <th>Offered Price</th>
+              <th>Accept/Reject</th>
+              
             </tr>
           </thead>
           <tbody>
-            {sells.map((item) => (
-              <tr key={item._id}>
+            {sells.map((item,index) => (
+              <tr >
+               <td>{index + 1}</td>
                 <td>
                   <div className="flex items-center gap-3">
                     <div>
@@ -87,20 +94,26 @@ const RequestedProperty = () => {
                 <td>{item.email}</td>
                 <td>{item.offer_price}</td>
                 <td>
-                  <button
-                    className="btn btn-ghost btn-sm bg-green-500"
-                    onClick={() => handleAccept(item._id)}
-                  >
-                    Accept
-                  </button>
-                </td>
-                <td>
-                  <button
-                    className="btn btn-ghost btn-sm bg-red-500"
-                    onClick={() => handleReject(item._id)}
-                  >
-                    Reject
-                  </button>
+                {handledRequests[item._id] ? (
+                    <span className={`font-semibold ${handledRequests[item._id] === 'accepted' ? 'text-green-500' : 'text-red-500'}`}>
+                      {handledRequests[item._id] === 'accepted' ? 'Accepted' : 'Rejected'}
+                    </span>
+                  ) : (
+                    <>
+                      <button
+                        className="btn btn-ghost btn-sm bg-green-500 mr-2"
+                        onClick={() => handleAccept(item._id)}
+                      >
+                        Accept
+                      </button>
+                      <button
+                        className="btn btn-ghost btn-sm bg-red-500"
+                        onClick={() => handleReject(item._id)}
+                      >
+                        Reject
+                      </button>
+                    </>
+                  )}
                 </td>
               </tr>
             ))}

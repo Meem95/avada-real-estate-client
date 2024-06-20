@@ -9,7 +9,7 @@ const ReviewByAdmin = () => {
   const {data: reviews = [], isPending: loading, refetch} = useQuery({
     queryKey: ['get-reviews'], 
     queryFn: async() =>{
-        const res = await axios.get('http://localhost:5000/get-reviews');
+        const res = await useAxiosPublic.get('/get-reviews');
         return res.data;
     }
 })

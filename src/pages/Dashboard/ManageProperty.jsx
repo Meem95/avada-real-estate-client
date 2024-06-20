@@ -53,8 +53,8 @@ const ManageProperty = () => {
               <th>Agent Name</th>
               <th>Agent Email</th>
               <th>Price Range</th>
-              <th>Verify</th>
-              <th>Reject</th>
+              <th>Verify/Reject</th>
+            
             </tr>
           </thead>
           <tbody>
@@ -69,8 +69,8 @@ const ManageProperty = () => {
                   </div>
                 </td>
                 <td>{item.location}</td>
-                <td>{item?.name}</td>
-                <td>{item?.email}</td>
+                <td>{item?.agentName}</td>
+                <td>{item?.agentEmail}</td>
                 <td>
                   {item.first_price} to {item.second_price}
                 </td>

@@ -7,10 +7,9 @@ import AllPropertySinglePage from "./AllPropertySinglePage";
 const AllProperty = () => {
   const [property] = useProperty();
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortType, setSortType] = useState(""); // State for sorting
+  const [sortType, setSortType] = useState(""); 
 
-  const popular = property.filter(item => item.status === 'verified');
-
+  const popular = property.filter(item => item.status === 'verified' && item.agentRole === "agent");
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };

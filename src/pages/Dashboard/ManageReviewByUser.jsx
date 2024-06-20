@@ -54,6 +54,7 @@ const ManageReviewByUser = () => {
               <div className="card-body items-center text-center">
                 <h2 className="card-title">{item.title}</h2>
                 <p className="font-bold">Agent Name: <span>{item.name}</span> </p>
+                <p >time :<span> {item.createdAt}</span> </p>
                 <p>{item.review}</p>
                 <div className="card-actions">
                   <button onClick={() => handleReviewDeleteItem(item)}  className="  border border-[#65bc7b] text-[#65bc7b] py-3 px-3 text-sm font-bold uppercase tracking-wider transition-all duration-150 ease-in-out focus:outline-none group mt-4">Delete</button>

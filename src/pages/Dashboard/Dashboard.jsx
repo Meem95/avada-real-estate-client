@@ -27,7 +27,6 @@ const Dashboard = () => {
   const [isAdmin] = UseAdmin();
   
   const [isSeller] = UseSeller();
-  console.log([isSeller])
   return (
     <div>
       <div className="flex">

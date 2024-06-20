@@ -11,7 +11,7 @@ import AllAvailableFood from "../pages/AllProperty";
 import FoodDetails from "../pages/Property/PropertyDetails";
 import MyLists from "../pages/MyList/MyLists";
 import UpdateFood from "../pages/UpdateFood";
-//  import NotFoundPage from "../pages/NotFoundPage";
+ import NotFoundPage from "../pages/NotFoundPage";
 import Request from "../pages/MyList/Request";
 import AllProperty from "../pages/AllProperty";
 import PropertyDetails from "../pages/Property/PropertyDetails";
@@ -42,17 +42,12 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Root></Root>, 
-        //  errorElement: <NotFoundPage />,
+         errorElement: <NotFoundPage />,
         children: [
             {
                 path: '/',
                 element: <Home></Home>, 
-            //   loader: async () => {
-            //     const [locationData, otherData] = await Promise.all([
-            //         fetch('').then(res => res.json())
-            //     ]);
-            //     return { locationData, otherData };
-            // }
+            
                
             },
             
@@ -64,7 +59,7 @@ const router = createBrowserRouter([
                 path: '/property-details/:id',
                 // element:<PrivateRoute> <PropertyDetails></PropertyDetails></PrivateRoute>,
                 element:<PrivateRoute> <PropertyDetails></PropertyDetails></PrivateRoute>,
-                loader:({params})=>fetch(`http://localhost:5000/property/${params.id}`)
+                loader:({params})=>fetch(`https://b9a12-real-estate-server.vercel.app/property/${params.id}`)
             },
             
             {
@@ -146,7 +141,7 @@ const router = createBrowserRouter([
           {
             path: 'update-property/:id',
             element: <UpdateProperty></UpdateProperty>,
-            loader: ({params}) => fetch(`http://localhost:5000/property/${params.id}`)
+            loader: ({params}) => fetch(`https://b9a12-real-estate-server.vercel.app/property/${params.id}`)
           },
           {
             path: 'sold-property',
@@ -169,7 +164,7 @@ const router = createBrowserRouter([
           {
             path: 'offer-property/:id',
             element: <OfferedProperty></OfferedProperty>,
-            loader:({params})=>fetch(`http://localhost:5000/offer-property/${params.id}`)
+            loader:({params})=>fetch(`https://b9a12-real-estate-server.vercel.app/offer-property/${params.id}`)
           },
           {
             path: 'bought-property',
@@ -184,7 +179,7 @@ const router = createBrowserRouter([
           {
             path: 'checkout-test/:id',
            element: <MeemCheckOut></MeemCheckOut> ,
-           loader:({params})=>fetch(`http://localhost:5000/user-boughtProperty-payment/${params.id}`)
+           loader:({params})=>fetch(`https://b9a12-real-estate-server.vercel.app/user-boughtProperty-payment/${params.id}`)
          
           },
         ]
