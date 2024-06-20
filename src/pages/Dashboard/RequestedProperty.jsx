@@ -10,18 +10,23 @@ const RequestedProperty = () => {
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
 
-  const { data: sells = [], isPending: loading, refetch } = useQuery({
-    queryKey: ['get-sells', user?.email],
+  const {
+    data: sells = [],
+    isPending: loading,
+    refetch,
+  } = useQuery({
+    queryKey: ["get-sells", user?.email],
     queryFn: async () => {
       const res = await axiosPublic.get(`/get-sells/${user?.email}`);
       return res.data;
     },
   });
 
-
   const handleAccept = async (id) => {
     try {
-      const res = await axiosSecure.patch(`/accept-property-request/${id}`, { email: user?.email });
+      const res = await axiosSecure.patch(`/accept-property-request/${id}`, {
+        email: user?.email,
+      });
       if (res.data.modifiedCount > 0) {
         Swal.fire({
           position: "top-end",
@@ -30,7 +35,7 @@ const RequestedProperty = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-       
+
         refetch();
       }
     } catch (error) {
@@ -40,7 +45,9 @@ const RequestedProperty = () => {
 
   const handleReject = async (id) => {
     try {
-      const res = await axiosSecure.patch(`/reject-property-request/${id}`, { email: user?.email });
+      const res = await axiosSecure.patch(`/reject-property-request/${id}`, {
+        email: user?.email,
+      });
       if (res.data.modifiedCount > 0) {
         Swal.fire({
           position: "top-end",
@@ -49,7 +56,7 @@ const RequestedProperty = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        
+
         refetch();
       }
     } catch (error) {
@@ -92,37 +99,36 @@ const RequestedProperty = () => {
                 <td>{item.email}</td>
                 <td>{item.offer_price}</td>
                 <td>
-                 
-                {item.status === "accepted" ? (
+                  {item.status === "accepted" ? (
                     "Accept"
                   ) : item.status === "rejected" ? (
-                    "Reject"
+                    "rejected"
+                  ) : item.status === "bought" ? (
+                    "Accepted"
                   ) : (
                     <button
-                    className="btn btn-ghost btn-sm bg-green-500 mr-2"
-                    onClick={() => handleAccept(item._id)}
-                  >
-                    Accept
-                  </button>
+                      className="btn btn-ghost btn-sm bg-green-500 mr-2"
+                      onClick={() => handleAccept(item._id)}
+                    >
+                      Accept
+                    </button>
                   )}
-                     
-                      
-                 
-                 
                 </td>
                 <td>
-                {item.status === "rejected" ? (
-                    "Reject"
+                  {item.status === "rejected" ? (
+                    "Rejected"
                   ) : item.status === "accepted" ? (
                     "Accept"
+                  ) : item.status === "bought" ? (
+                    "Accepted"
                   ) : (
                     <button
-                    className="btn btn-ghost btn-sm bg-red-500"
-                    onClick={() => handleReject(item._id)}
-                  >
-                    Reject
-                  </button>
-                  )} 
+                      className="btn btn-ghost btn-sm bg-red-500"
+                      onClick={() => handleReject(item._id)}
+                    >
+                      Reject
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}
